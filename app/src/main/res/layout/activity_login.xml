@@ -124,12 +124,9 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="120dp"
+        style="@style/Button"
         android:layout_marginTop="40dp"
-        android:background="@mipmap/button_bg"
         android:layout_gravity="center_horizontal"
-        android:layout_height="@dimen/common_size_48"
-        android:textColor="@color/blue"
         android:text="@string/login"
-        android:textSize="@dimen/text_size_24" />
+        />
 </LinearLayout>

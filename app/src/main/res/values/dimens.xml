@@ -12,6 +12,7 @@
 
     <!--layout-->
     <dimen name="common_size_48">48dp</dimen>
+    <dimen name="common_size_120">120dp</dimen>
 
 
 </resources>

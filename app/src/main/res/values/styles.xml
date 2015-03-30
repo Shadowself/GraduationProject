@@ -5,4 +5,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Button">
+        <item name="android:layout_width">@dimen/common_size_120</item>
+        <item name="android:layout_height">@dimen/common_size_48</item>
+        <item name="android:background">@mipmap/button_bg</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
