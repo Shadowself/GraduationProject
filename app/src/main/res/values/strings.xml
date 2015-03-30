@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="login">登录</string>
+    <string name="user_account">账号:</string>
+    <string name="user_password">密码:</string>
+    <string name="remember_pass">记住密码</string>
+    <string name="auto_login">自动登录</string>
+
 </resources>
