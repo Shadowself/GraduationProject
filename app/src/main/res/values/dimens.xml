@@ -6,6 +6,7 @@
     <dimen name="common_margin_40">40dp</dimen>
 
     <!--textSize-->
+    <dimen name="text_size_15">15sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_24">24sp</dimen>
     <dimen name="text_size_28">28sp</dimen>

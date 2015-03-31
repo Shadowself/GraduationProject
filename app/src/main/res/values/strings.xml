@@ -9,5 +9,6 @@
     <string name="user_password">密码:</string>
     <string name="remember_pass">记住密码</string>
     <string name="auto_login">自动登录</string>
+    <string name="home_activity">主页</string>
 
 </resources>
