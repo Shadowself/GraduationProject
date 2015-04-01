@@ -18,7 +18,6 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:onClick="back_main"
             />
 
         <TextView

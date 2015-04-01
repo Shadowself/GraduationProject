@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Mr_zhang on 2015/3/31.
  */
-public class HomeActivity extends Activity {
+public class HomeActivity extends BaseActivity {
 
     private GridView storehouse_gridView;
     private List<Storehouse> gridItems ;
@@ -23,7 +23,8 @@ public class HomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setChildContentView(R.layout.activity_home);
+        comm_title.setText("所有仓库");
 
         storehouse_gridView = (GridView) findViewById(R.id.storehouse_gridView);
         gridItems = new ArrayList<Storehouse>();
