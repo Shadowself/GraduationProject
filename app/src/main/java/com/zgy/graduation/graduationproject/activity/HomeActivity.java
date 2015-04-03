@@ -1,7 +1,5 @@
 package com.zgy.graduation.graduationproject.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +8,10 @@ import android.widget.GridView;
 import com.zgy.graduation.graduationproject.R;
 import com.zgy.graduation.graduationproject.adapter.StorehouseAdapter;
 import com.zgy.graduation.graduationproject.bean.Storehouse;
+import com.zgy.graduation.graduationproject.http.OkHttpUtil;
+import com.zgy.graduation.graduationproject.util.ViewUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class HomeActivity extends BaseActivity {
         storehouse_gridView = (GridView) findViewById(R.id.storehouse_gridView);
         gridItems = new ArrayList<Storehouse>();
 
+
+
         for(int i = 0; i < 10; i++){
             Storehouse gridMenu = new Storehouse();
     		gridMenu.setStorehouseTitleResId( 100 * (i+1) +i+1 + "");
@@ -45,14 +48,21 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent();
-                intent.setClass(HomeActivity.this,StorehouseActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setClass(HomeActivity.this,StorehouseActivity.class);
+//                startActivity(intent);
+                String url = "https://raw.github.com/square/okhttp/master/README.md";
+                String str = "";
+                try {
+                    str = OkHttpUtil.getStringFromServer(url);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ViewUtil.showToast(HomeActivity.this,str);
 
             }
         });
 
     }
-
 
 }
