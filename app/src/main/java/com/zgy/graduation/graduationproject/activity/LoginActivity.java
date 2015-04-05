@@ -1,14 +1,19 @@
 package com.zgy.graduation.graduationproject.activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
+import com.zgy.graduation.graduationproject.http.StringTaskHandler;
+import com.zgy.graduation.graduationproject.util.ViewUtil;
+
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -25,9 +30,46 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this,HomeActivity.class);
-                startActivity(intent);
+                String url = getString(R.string.login_url);
+
+                JSONObject jsonString = new JSONObject();
+                jsonString.put("username","admin");
+                jsonString.put("password","123");
+
+                HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(LoginActivity.this);
+                httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
+                            @Override
+                            public void onNetError() {
+                                ViewUtil.showToast(LoginActivity.this, getString(R.string.network_error));
+                            }
+
+                            @Override
+                            public void onSuccess(String result) {
+
+                                String str = result;
+
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this,LoginActivity.class);
+                                startActivity(intent);
+
+                                ViewUtil.showToast(LoginActivity.this, result);
+                            }
+
+                            @Override
+                            public void onFail() {
+                                ViewUtil.showToast(LoginActivity.this, getString(R.string.server_error));
+                            }
+
+                            @Override
+                            public void onFinish() {
+
+                            }
+
+                        }
+                );
+
+
+
             }
         });
 

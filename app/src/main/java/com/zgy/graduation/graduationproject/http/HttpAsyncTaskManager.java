@@ -28,7 +28,7 @@ import java.util.Map;
 public class HttpAsyncTaskManager implements AsyncRequest {
 
     private Context mContext;
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json;charset=utf-8");
 
     private static final String TAG = HttpAsyncTaskManager.class
             .getSimpleName();
@@ -142,8 +142,7 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                 if(type == 0){  //get
                     try {
                         request = new Request.Builder().url(url).build();
-                        OkHttpUtil okHttpUtil = new OkHttpUtil();
-                        response = okHttpUtil.execute(request);
+                        response = OkHttpUtil.execute(request);
                         if (response.isSuccessful()) {
                             is = response.body().byteStream();
                             responseStr = IOUtils.stream2String(is);

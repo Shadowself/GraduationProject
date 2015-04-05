@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:support-annotations:22.0.0'
     compile files('libs/okhttp-2.3.0.jar')
     compile files('libs/fastjson-1.2.5.jar')
+    compile 'com.android.support:support-annotations:22.0.0'
 }
