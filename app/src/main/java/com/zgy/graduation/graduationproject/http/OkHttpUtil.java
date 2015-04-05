@@ -22,8 +22,8 @@ public class OkHttpUtil {
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     static{
         mOkHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
-        mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
-        mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
+//        mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
+//        mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
     }
     /**
      * 该步会开启异步线程。
@@ -51,6 +51,7 @@ public class OkHttpUtil {
 
             @Override
             public void onResponse(Response arg0) throws IOException {
+
 
             }
 

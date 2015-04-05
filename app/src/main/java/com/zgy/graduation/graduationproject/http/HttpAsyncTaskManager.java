@@ -8,7 +8,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.Request;
@@ -28,14 +27,14 @@ import java.util.Map;
  */
 public class HttpAsyncTaskManager implements AsyncRequest {
 
-    private Context context;
+    private Context mContext;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private static final String TAG = HttpAsyncTaskManager.class
             .getSimpleName();
 
     public HttpAsyncTaskManager(Context context) {
-        this.context = context;
+        this.mContext = context;
     }
 
     /**
@@ -46,9 +45,9 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      */
     public void requestStream(String url, String param,
                               TaskHandler handler) {
-        if (context != null) {
+        if (mContext != null) {
             synchronized (this) {
-                new HttpStreamTask(context, url, 1, param, handler).execute("");
+                new HttpStreamTask(mContext, url, 1, param, handler).execute("");
             }
 
         }
@@ -62,9 +61,9 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      */
     public void requestStreamBytes(String url, String param,
                                    TaskByteHandler handler) {
-        if (context != null) {
+        if (mContext != null) {
             synchronized (this) {
-                new HttpStreamBytesTask(context, url, 1, param, handler).execute("");
+                new HttpStreamBytesTask(mContext, url, 1, param, handler).execute("");
             }
 
         }
@@ -77,9 +76,9 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      * @param handler
      */
     public void request(String url, TaskHandler handler) {
-        if (context != null) {
+        if (mContext != null) {
             synchronized (this) {
-                new HttpTask(context, url, 0, null, handler).execute("");
+                new HttpTask(mContext, url, 0, null, handler).execute("");
             }
 
         }
@@ -95,9 +94,9 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      */
     public void request(String url, Map<String, String> params,
                         TaskHandler handler) {
-        if (context != null) {
+        if (mContext != null) {
             synchronized (this) {
-                new HttpTask(context, url, 1, params, handler).execute("");
+                new HttpTask(mContext, url, 1, params, handler).execute("");
             }
         }
     }
@@ -143,7 +142,8 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                 if(type == 0){  //get
                     try {
                         request = new Request.Builder().url(url).build();
-                        response = OkHttpUtil.execute(request);
+                        OkHttpUtil okHttpUtil = new OkHttpUtil();
+                        response = okHttpUtil.execute(request);
                         if (response.isSuccessful()) {
                             is = response.body().byteStream();
                             responseStr = IOUtils.stream2String(is);
