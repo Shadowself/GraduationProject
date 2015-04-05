@@ -9,11 +9,9 @@ import com.zgy.graduation.graduationproject.R;
 import com.zgy.graduation.graduationproject.adapter.StorehouseAdapter;
 import com.zgy.graduation.graduationproject.bean.Storehouse;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
-import com.zgy.graduation.graduationproject.http.OkHttpUtil;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
