@@ -1,5 +1,7 @@
 package com.zgy.graduation.graduationproject.activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -21,13 +23,14 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 public class LoginActivity extends ActionBarActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
-
+    protected Context mContext = LoginActivity.this;
     private Button loginButton;
     private EditText account;
     private EditText password;
     private CheckBox rememberPswd;
     private CheckBox autoLogin;
     private PreferencesUtil preferencesUtil = null;
+    private ProgressDialog pdpd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,7 @@ public class LoginActivity extends ActionBarActivity {
 
                     Login(username,pswd);
                 } else {
-                    ViewUtil.showToast(LoginActivity.this, getString(R.string.text_empty));
+                    ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }
 
             }
@@ -132,12 +135,13 @@ public class LoginActivity extends ActionBarActivity {
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);
+        showProgressDialog(getString(R.string.logining),false);
 
-        HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(LoginActivity.this);
+        HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
                     @Override
                     public void onNetError() {
-                        ViewUtil.showToast(LoginActivity.this, getString(R.string.network_error));
+                        ViewUtil.showToast(mContext, getString(R.string.network_error));
                     }
 
                     @Override
@@ -149,14 +153,15 @@ public class LoginActivity extends ActionBarActivity {
                                 // resData.getcode_()=0;
                                 // 调用接口成功
                                 case ReqCmd.RESULTCODE_SUCCESS:
-                                    ViewUtil.showToast(LoginActivity.this, resData.getMessage_());
+                                    ViewUtil.showToast(mContext, resData.getMessage_());
                                     Intent intent = new Intent();
-                                    intent.setClass(LoginActivity.this, HomeActivity.class);
+                                    intent.setClass(mContext, HomeActivity.class);
                                     startActivity(intent);
+                                    finish();
 
                                     break;
                                 default:
-                                    ViewUtil.showToast(LoginActivity.this, resData.getMessage_());
+                                    ViewUtil.showToast(mContext, resData.getMessage_());
                                     break;
                             }
                         } catch (Exception e) {
@@ -167,18 +172,33 @@ public class LoginActivity extends ActionBarActivity {
 
                     @Override
                     public void onFail() {
-                        ViewUtil.showToast(LoginActivity.this, getString(R.string.server_error));
+                        ViewUtil.showToast(mContext, getString(R.string.server_error));
                     }
 
                     @Override
                     public void onFinish() {
-
+                        closeProgressDialog();
                     }
 
                 }
         );
 
     }
+
+    protected void showProgressDialog(String message,boolean canBack){
+        closeProgressDialog();
+        pdpd = ProgressDialog.show(mContext, "",message, true, true);
+        pdpd.setCanceledOnTouchOutside(false);
+        pdpd.setCancelable(canBack);
+    }
+
+    public void closeProgressDialog(){
+        if(pdpd != null && pdpd.isShowing())
+            pdpd.dismiss();
+    }
+
+
+
 
 
 }
