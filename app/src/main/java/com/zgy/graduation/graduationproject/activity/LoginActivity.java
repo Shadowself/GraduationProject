@@ -3,72 +3,88 @@ package com.zgy.graduation.graduationproject.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.bean.ResData;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
+import com.zgy.graduation.graduationproject.util.PreferencesUtil;
+import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 
-
 public class LoginActivity extends ActionBarActivity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     private Button loginButton;
+    private EditText account;
+    private EditText password;
+    private CheckBox rememberPswd;
+    private CheckBox autoLogin;
+    private PreferencesUtil preferencesUtil = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginButton = (Button) findViewById(R.id.loginButton);
+        initView();
+
+        preferencesUtil = new PreferencesUtil(this);
+        boolean rememberChecked = preferencesUtil.getBoolean(ReqCmd.REMEMBERCHECKED,false);
+        final boolean autologinChecked = preferencesUtil.getBoolean(ReqCmd.AUTOLOGINCHECKED,false);
+        if(rememberChecked){
+            String user = preferencesUtil.getString(ReqCmd.USERNAME,"");
+            String pswd = preferencesUtil.getString(ReqCmd.PASSWORD,"");
+            account.setText(user);
+            password.setText(pswd);
+            rememberPswd.setChecked(true);
+            if(autologinChecked){
+                autoLogin.setChecked(true);
+                Login(user, pswd);
+            }
+        }else{
+            rememberPswd.setChecked(false);
+            autoLogin.setChecked(false);
+
+        }
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String url = getString(R.string.login_url);
+                String username = account.getText().toString().trim();
+                String pswd = password.getText().toString().trim();
 
-                JSONObject jsonString = new JSONObject();
-                jsonString.put("username","admin");
-                jsonString.put("password","123");
+                //非空登陆
+                if (!username.isEmpty() && !pswd.isEmpty()) {
+                    if(rememberPswd.isChecked()){
+                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED,true);
+                        preferencesUtil.saveString(ReqCmd.USERNAME, username);
+                        preferencesUtil.saveString(ReqCmd.PASSWORD,pswd);
+                    }else{
+                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED,false);
+                        preferencesUtil.saveString(ReqCmd.USERNAME, "");
+                        preferencesUtil.saveString(ReqCmd.PASSWORD,"");
+                    }
 
-                HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(LoginActivity.this);
-                httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
-                            @Override
-                            public void onNetError() {
-                                ViewUtil.showToast(LoginActivity.this, getString(R.string.network_error));
-                            }
+                    if (autoLogin.isChecked()){
+                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED,true);
+                    }else{
+                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED,false);
+                    }
 
-                            @Override
-                            public void onSuccess(String result) {
-
-                                String str = result;
-
-                                Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this,LoginActivity.class);
-                                startActivity(intent);
-
-                                ViewUtil.showToast(LoginActivity.this, result);
-                            }
-
-                            @Override
-                            public void onFail() {
-                                ViewUtil.showToast(LoginActivity.this, getString(R.string.server_error));
-                            }
-
-                            @Override
-                            public void onFinish() {
-
-                            }
-
-                        }
-                );
-
-
+                    Login(username,pswd);
+                } else {
+                    ViewUtil.showToast(LoginActivity.this, getString(R.string.text_empty));
+                }
 
             }
         });
@@ -76,26 +92,93 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
+    public void initView() {
+        loginButton = (Button) findViewById(R.id.loginButton);
+        account = (EditText) findViewById(R.id.account);
+        password = (EditText) findViewById(R.id.password);
+        rememberPswd = (CheckBox) findViewById(R.id.rememberPswd);
+        autoLogin = (CheckBox) findViewById(R.id.autologin);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
+        // 自动登录必须记住密码
+        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (isChecked) {
+                    rememberPswd.setChecked(true);
+                }
+
+            }
+        });
+
+        // 取消记住密码时，自动登录也取消，选择自动登录的话，记住密码
+        rememberPswd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (!isChecked) {
+                    autoLogin.setChecked(false);
+                }
+
+            }
+        });
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void Login(String username,String password){
+        String url = getString(R.string.login_url);
+        JSONObject jsonString = new JSONObject();
+        jsonString.put(ReqCmd.USERNAME, username);
+        jsonString.put(ReqCmd.PASSWORD, password);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(LoginActivity.this);
+        httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
+                    @Override
+                    public void onNetError() {
+                        ViewUtil.showToast(LoginActivity.this, getString(R.string.network_error));
+                    }
 
-        return super.onOptionsItemSelected(item);
+                    @Override
+                    public void onSuccess(String result) {
+
+                        try {
+                            ResData resData = JSONObject.parseObject(result, ResData.class);
+                            switch (resData.getCode_()) {
+                                // resData.getcode_()=0;
+                                // 调用接口成功
+                                case ReqCmd.RESULTCODE_SUCCESS:
+                                    ViewUtil.showToast(LoginActivity.this, resData.getMessage_());
+                                    Intent intent = new Intent();
+                                    intent.setClass(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+
+                                    break;
+                                default:
+                                    ViewUtil.showToast(LoginActivity.this, resData.getMessage_());
+                                    break;
+                            }
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail() {
+                        ViewUtil.showToast(LoginActivity.this, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                }
+        );
+
     }
+
+
 }
