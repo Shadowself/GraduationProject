@@ -272,7 +272,7 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                                 .build();
 
                         response = OkHttpUtil.execute(request);
-                        if (response.isSuccessful()) {
+                        if (response.code() == 200) {
                             is = response.body().byteStream();
                             return IOUtils.stream2String(is);
                         } else {

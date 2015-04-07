@@ -1,6 +1,7 @@
 package com.zgy.graduation.graduationproject.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -27,6 +28,8 @@ public class BaseActivity extends Activity{
     protected LinearLayout viewContent = null;
     protected TextView comm_title;
     protected ImageView back_main;
+
+    private ProgressDialog pdpd;
 
     protected static final String[] items = new String[] { "选择本地图片", "拍照" };
     protected final int IMGSETDIALOG = 4;
@@ -164,6 +167,18 @@ public class BaseActivity extends Activity{
 
     protected void onBackClick(){
         finish();
+    }
+
+    protected void showProgressDialog(String message, boolean canBack) {
+        closeProgressDialog();
+        pdpd = ProgressDialog.show(mContext, "", message, true, true);
+        pdpd.setCanceledOnTouchOutside(false);
+        pdpd.setCancelable(canBack);
+    }
+
+    public void closeProgressDialog() {
+        if (pdpd != null && pdpd.isShowing())
+            pdpd.dismiss();
     }
 
 }

@@ -12,6 +12,10 @@ public class ReqCmd {
     public static final String USERNAME = "username",
                                 PASSWORD = "password";
 
+    //仓库
+    public static final String STOREHOUSENAME = "storeHouseName",
+                               GOODS ="goods";
+
     //
     public static final String REMEMBERCHECKED = "rememberChecked",
            AUTOLOGINCHECKED = "autologinChecked";

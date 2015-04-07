@@ -119,12 +119,14 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                 case 0:
 
                     if (data != null) {
-                        ContentResolver resolver = getContentResolver();
-                        //照片的原始资源地址
-                        Uri originalUri = data.getData();
-                        Bitmap bp = decodeUriAsBitmap(originalUri);
 
-//                        Bitmap bp = data.getParcelableExtra("dat");
+                        Bitmap bp = data.getParcelableExtra("data");
+                        if(null == bp){
+                            ContentResolver resolver = getContentResolver();
+                        //照片的原始资源地址
+                            Uri originalUri = data.getData();
+                            bp = decodeUriAsBitmap(originalUri);
+                        }
                         pestPicture.setImageBitmap(bp);
 
                         savePhotoToSDCard(userPhoto, "image.jpg", bp);
