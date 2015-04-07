@@ -12,15 +12,16 @@
 
         <ImageView
             android:id="@+id/back_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/common_size_30"
+            android:layout_height="@dimen/common_size_30"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:contentDescription="@null"
+            android:clickable="true"
             android:src="@drawable/icon_back_white"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"/>
+            />
 
         <TextView
             android:id="@+id/comm_title"

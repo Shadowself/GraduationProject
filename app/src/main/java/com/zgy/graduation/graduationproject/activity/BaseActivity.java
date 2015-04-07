@@ -18,7 +18,7 @@ import java.util.Stack;
 /**
  * Created by Mr_zhang on 2015/3/31.
  */
-public class BaseActivity extends Activity implements View.OnClickListener{
+public class BaseActivity extends Activity{
 
     protected Context mContext = BaseActivity.this;
     private static Stack<Activity> activityStack = new Stack<Activity>();
@@ -47,7 +47,13 @@ public class BaseActivity extends Activity implements View.OnClickListener{
         viewContent.setVisibility(View.VISIBLE);
         comm_title = (TextView) findViewById(R.id.comm_title);
         back_main = (ImageView) findViewById(R.id.back_main);
-        back_main.setOnClickListener(this);
+        back_main.setVisibility(View.INVISIBLE);
+        back_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackClick();
+            }
+        });
     }
 
     /**
@@ -146,18 +152,6 @@ public class BaseActivity extends Activity implements View.OnClickListener{
 //		TaskExecutor.getInstance().execute(new ClearActivityTask0());
         clearActivitiesFromStack();
         System.exit(0);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.back_main:
-                //返回
-                onBackClick();
-                break;
-        }
-
-
     }
 
     public static class ClearActivityTask0 implements Runnable{

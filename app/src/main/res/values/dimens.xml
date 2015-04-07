@@ -12,6 +12,7 @@
     <dimen name="text_size_28">28sp</dimen>
 
     <!--layout-->
+    <dimen name="common_size_30">30dp</dimen>
     <dimen name="common_size_48">48dp</dimen>
     <dimen name="common_size_120">120dp</dimen>
     <dimen name="common_size_200">200dp</dimen>

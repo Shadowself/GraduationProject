@@ -33,7 +33,6 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 intent.setClass(this,findPestKindActivity.class);
                 startActivity(intent);
                 break;
-
         }
     }
 }
