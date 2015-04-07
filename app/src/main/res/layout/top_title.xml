@@ -17,7 +17,10 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:contentDescription="@null"
+            android:src="@drawable/icon_back_white"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/comm_title"

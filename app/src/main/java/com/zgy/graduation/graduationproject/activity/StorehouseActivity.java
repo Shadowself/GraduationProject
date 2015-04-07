@@ -19,6 +19,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setChildContentView(R.layout.activity_storehouse);
         comm_title.setText(R.string.storehouse_info);
+        back_main.setVisibility(View.VISIBLE);
 
         postPicture = (Button) findViewById(R.id.postPicture);
         postPicture.setOnClickListener(this);

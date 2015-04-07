@@ -17,9 +17,10 @@
     <string name="choose_picture">选择照片</string>
     <string name="post_picture">上传照片</string>
     <string name="hint_text_picture">请对害虫进行简要的描述</string>
+    <string name="add_Storehouse">添加仓库</string>
 
-    <string name="network_error">网络异常,请检查网络设置！</string>
-    <string name="server_error">服务器连接失败，请检查服务器端！</string>
+    <string name="network_error">坑爹的，没网你登什么登！</string>
+    <string name="server_error">没找到服务器，请检查服务器连接！</string>
     <string name="text_empty">用户名或密码不能为空！</string>
     <string name="logining">正在登陆...</string>
 

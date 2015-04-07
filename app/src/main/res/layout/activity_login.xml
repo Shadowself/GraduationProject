@@ -29,18 +29,16 @@
 
         <EditText
             android:id="@+id/account"
+            style="@style/comm_EditText"
             android:layout_width="240dp"
             android:layout_height="48dp"
             android:layout_alignBaseline="@+id/text1"
             android:layout_alignBottom="@+id/text1"
-            android:textColor="@color/blue"
-            android:background="@mipmap/text_bg"
             android:ems="10"
+            android:lines="1"
             android:maxLength="16"
             android:paddingLeft="57sp"
-            android:saveEnabled="true"
-            android:textColorHint="#99CCFF"
-            android:textSize="@dimen/text_size_20" />
+            />
 
         <TextView
             android:id="@+id/text1"
@@ -56,20 +54,18 @@
 
         <EditText
             android:id="@+id/password"
+            style="@style/comm_EditText"
             android:layout_width="240dp"
             android:layout_height="48dp"
             android:layout_alignBaseline="@+id/text2"
             android:layout_alignBottom="@+id/text2"
-            android:textColor="@color/blue"
-            android:background="@mipmap/text_bg"
+            android:lines="1"
             android:ems="10"
             android:inputType="textPassword"
             android:maxLength="16"
             android:paddingLeft="57sp"
             android:layout_marginBottom="@dimen/vertical_margin_16"
-            android:saveEnabled="true"
-            android:textColorHint="#99CCFF"
-            android:textSize="@dimen/text_size_20" />
+            />
 
         <TextView
             android:id="@+id/text2"

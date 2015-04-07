@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import java.util.Stack;
 /**
  * Created by Mr_zhang on 2015/3/31.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements View.OnClickListener{
 
     protected Context mContext = BaseActivity.this;
     private static Stack<Activity> activityStack = new Stack<Activity>();
@@ -25,6 +26,7 @@ public class BaseActivity extends Activity {
     // 标题栏以下部分内容布局类对象
     protected LinearLayout viewContent = null;
     protected TextView comm_title;
+    protected ImageView back_main;
 
     protected static final String[] items = new String[] { "选择本地图片", "拍照" };
     protected final int IMGSETDIALOG = 4;
@@ -44,6 +46,8 @@ public class BaseActivity extends Activity {
         viewContent = (LinearLayout) findViewById(R.id.viewBaseContent);
         viewContent.setVisibility(View.VISIBLE);
         comm_title = (TextView) findViewById(R.id.comm_title);
+        back_main = (ImageView) findViewById(R.id.back_main);
+        back_main.setOnClickListener(this);
     }
 
     /**
@@ -144,12 +148,28 @@ public class BaseActivity extends Activity {
         System.exit(0);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.back_main:
+                //返回
+                onBackClick();
+                break;
+        }
+
+
+    }
+
     public static class ClearActivityTask0 implements Runnable{
         @Override
         public void run() {
             // TODO Auto-generated method stub
             clearActivitiesFromStack();
         }
+    }
+
+    protected void onBackClick(){
+        finish();
     }
 
 }

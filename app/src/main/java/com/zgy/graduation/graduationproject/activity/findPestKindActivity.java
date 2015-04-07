@@ -46,6 +46,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setChildContentView(R.layout.activity_findpestkind);
         comm_title.setText(getString(R.string.find_pest_kind));
+        back_main.setVisibility(View.VISIBLE);
 
         pestPicture = (ImageView)findViewById(R.id.pestPicture);
         choose_way = (Button)findViewById(R.id.choose_way);
