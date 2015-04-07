@@ -1,17 +1,22 @@
 package com.zgy.graduation.graduationproject.activity;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.util.DeviceUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,16 +26,20 @@ import java.io.IOException;
 /**
  * Created by zhangguoyu on 2015/4/7.
  */
-public class findPestKindActivity extends BaseActivity{
+public class findPestKindActivity extends BaseActivity implements View.OnClickListener{
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     private ImageView pestPicture;
+    private Button choose_way;
     Bitmap newBitmap;
 
     private static final String IMAGE_FILE_LOCATION = "file:///sdcard/temp.jpg";// temp
     // file
     Uri imageUri = Uri.parse(IMAGE_FILE_LOCATION);// The Uri to store the big
     // bitmap
+    public static String userPhoto = String.format("%spicture%s",
+            DeviceUtil.getSDcardDir()
+                    + DeviceUtil.DEFAULTBASEPATH, File.separator);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +48,9 @@ public class findPestKindActivity extends BaseActivity{
         comm_title.setText(getString(R.string.find_pest_kind));
 
         pestPicture = (ImageView)findViewById(R.id.pestPicture);
+        choose_way = (Button)findViewById(R.id.choose_way);
+        choose_way.setOnClickListener(this);
 
-    }
-
-    // 调用相机
-    public void camera_way(View v) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// action is
-        // capture
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, 2);// or TAKE_SMALL_PICTURE
     }
 
     // 对相机返回的相片进行裁减
@@ -67,22 +70,6 @@ public class findPestKindActivity extends BaseActivity{
         startActivityForResult(intent, requestCode);
     }
 
-    // 调用相册并裁减
-    public void ablum_way(View v) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-        intent.setType("image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 200);
-        intent.putExtra("outputY", 200);
-        intent.putExtra("scale", true);
-        intent.putExtra("return-data", true);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-        intent.putExtra("noFaceDetection", true); // no face detection
-        startActivityForResult(intent, 0);
-
-    }
 
     //保存到sd卡
     public static void savePhotoToSDCard(String path, String photoName,
@@ -138,7 +125,8 @@ public class findPestKindActivity extends BaseActivity{
 
 //                        Bitmap bp = data.getParcelableExtra("dat");
                         pestPicture.setImageBitmap(bp);
-                        savePhotoToSDCard("sdcard/image", "image.jpg", bp);
+
+                        savePhotoToSDCard(userPhoto, "image.jpg", bp);
                     } else {
                         Log.e(TAG, "CHOOSE_SMALL_PICTURE: data = " + data);
                     }
@@ -154,11 +142,13 @@ public class findPestKindActivity extends BaseActivity{
                     if (imageUri != null) {
                         Bitmap bmp = decodeUriAsBitmap(imageUri);
                         pestPicture.setImageBitmap(bmp);
-                        savePhotoToSDCard("sdcard/image", "image.jpg", bmp);
+                        savePhotoToSDCard(userPhoto, "image.jpg", bmp);
                     } else {
                         Log.e(TAG, "CROP_SMALL_PICTURE: data = " + data);
                     }
                     break;
+
+
                 default:
                     break;
             }
@@ -178,6 +168,58 @@ public class findPestKindActivity extends BaseActivity{
         return bitmap;
     }
 
+    private Uri getImageUri() {
+        return Uri.fromFile(new File(Environment.getExternalStorageDirectory(),
+                IMAGE_FILE_NAME));
+    }
+
+    public void createDialog() {
+        new AlertDialog.Builder(mContext)
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                //調用相冊
+                                Intent intentFromCapture = new Intent(Intent.ACTION_GET_CONTENT, null);
+                                intentFromCapture.setType("image/*");
+                                intentFromCapture.putExtra("crop", "true");
+                                intentFromCapture.putExtra("aspectX", 1);
+                                intentFromCapture.putExtra("aspectY", 1);
+                                intentFromCapture.putExtra("outputX", 200);
+                                intentFromCapture.putExtra("outputY", 200);
+                                intentFromCapture.putExtra("scale", true);
+                                intentFromCapture.putExtra("return-data", true);
+                                intentFromCapture.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                                intentFromCapture.putExtra("noFaceDetection", true); // no face detection
+                                startActivityForResult(intentFromCapture, 0);
+                                break;
+                            case 1:
+                                //调用相机
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// action is
+                                // capture
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                                startActivityForResult(intent, 2);// or TAKE_SMALL_PICTURE
+                                break;
+                        }
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.choose_way:
+                    createDialog();
+                break;
+        }
+    }
 }

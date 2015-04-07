@@ -23,6 +23,16 @@ public class BaseActivity extends Activity {
     protected LinearLayout viewContent = null;
     protected TextView comm_title;
 
+    protected static final String[] items = new String[] { "选择本地图片", "拍照" };
+    protected final int IMGSETDIALOG = 4;
+    protected static final int IMAGE_REQUEST_CODE = 5;
+    protected static final int CAMERA_REQUEST_CODE = 6;
+    protected static final int RESULT_REQUEST_CODE = 7;
+    protected static final int PICTURESETDIALOG = 8;
+
+    /* 照片名称 */
+    protected static final String IMAGE_FILE_NAME = "tempPicture.jpg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -4,15 +4,15 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/choose_way"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="camera_way"
         android:text="拍照并裁减" />
 
     <Button
+        android:id="@+id/ablum_way"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ablum_way"
         android:text="获取相册后裁剪相片" />
 
     <EditText
