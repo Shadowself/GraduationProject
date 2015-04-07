@@ -3,6 +3,9 @@ package com.zgy.graduation.graduationproject.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * comm preferenceUtil
+ */
 public class PreferencesUtil {
 	public static final String PERSONPREFERENCES = "GRADUATION-GARDEN";
 	private Context mContext;

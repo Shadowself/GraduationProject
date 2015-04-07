@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="camera_way"
+        android:text="拍照并裁减" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ablum_way"
+        android:text="获取相册后裁剪相片" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:background="@mipmap/text_bg"
+        android:hint="请对害虫进行简要的描述"/>
+
+    <ImageView
+        android:id="@+id/pestPicture"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:layout_width="@dimen/common_size_200"
+        android:layout_height="@dimen/common_size_200"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

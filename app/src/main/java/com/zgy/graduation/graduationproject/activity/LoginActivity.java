@@ -40,19 +40,19 @@ public class LoginActivity extends ActionBarActivity {
         initView();
 
         preferencesUtil = new PreferencesUtil(this);
-        boolean rememberChecked = preferencesUtil.getBoolean(ReqCmd.REMEMBERCHECKED,false);
-        final boolean autologinChecked = preferencesUtil.getBoolean(ReqCmd.AUTOLOGINCHECKED,false);
-        if(rememberChecked){
-            String user = preferencesUtil.getString(ReqCmd.USERNAME,"");
-            String pswd = preferencesUtil.getString(ReqCmd.PASSWORD,"");
+        boolean rememberChecked = preferencesUtil.getBoolean(ReqCmd.REMEMBERCHECKED, false);
+        final boolean autologinChecked = preferencesUtil.getBoolean(ReqCmd.AUTOLOGINCHECKED, false);
+        if (rememberChecked) {
+            String user = preferencesUtil.getString(ReqCmd.USERNAME, "");
+            String pswd = preferencesUtil.getString(ReqCmd.PASSWORD, "");
             account.setText(user);
             password.setText(pswd);
             rememberPswd.setChecked(true);
-            if(autologinChecked){
+            if (autologinChecked) {
                 autoLogin.setChecked(true);
                 Login(user, pswd);
             }
-        }else{
+        } else {
             rememberPswd.setChecked(false);
             autoLogin.setChecked(false);
 
@@ -66,25 +66,29 @@ public class LoginActivity extends ActionBarActivity {
                 String username = account.getText().toString().trim();
                 String pswd = password.getText().toString().trim();
 
-                //非空登陆
+                //not empty then login
                 if (!username.isEmpty() && !pswd.isEmpty()) {
-                    if(rememberPswd.isChecked()){
-                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED,true);
+                    if (rememberPswd.isChecked()) {
+                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED, true);
                         preferencesUtil.saveString(ReqCmd.USERNAME, username);
-                        preferencesUtil.saveString(ReqCmd.PASSWORD,pswd);
-                    }else{
-                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED,false);
+                        preferencesUtil.saveString(ReqCmd.PASSWORD, pswd);
+                    } else {
+                        preferencesUtil.saveBoolean(ReqCmd.REMEMBERCHECKED, false);
                         preferencesUtil.saveString(ReqCmd.USERNAME, "");
-                        preferencesUtil.saveString(ReqCmd.PASSWORD,"");
+                        preferencesUtil.saveString(ReqCmd.PASSWORD, "");
                     }
 
-                    if (autoLogin.isChecked()){
-                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED,true);
-                    }else{
-                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED,false);
+                    if (autoLogin.isChecked()) {
+                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED, true);
+                    } else {
+                        preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED, false);
                     }
 
-                    Login(username,pswd);
+//                    Login(username, pswd);
+
+                    Intent intent = new Intent();
+                    intent.setClass(mContext, HomeActivity.class);
+                    startActivity(intent);
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }
@@ -102,7 +106,7 @@ public class LoginActivity extends ActionBarActivity {
         rememberPswd = (CheckBox) findViewById(R.id.rememberPswd);
         autoLogin = (CheckBox) findViewById(R.id.autologin);
 
-        // 自动登录必须记住密码
+        //if auto login then must remember password
         autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -115,7 +119,7 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
 
-        // 取消记住密码时，自动登录也取消，选择自动登录的话，记住密码
+        // if not remember password then not auto login
         rememberPswd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -130,12 +134,12 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
-    public void Login(String username,String password){
+    public void Login(String username, String password) {
         String url = getString(R.string.login_url);
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);
-        showProgressDialog(getString(R.string.logining),false);
+        showProgressDialog(getString(R.string.logining), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
@@ -151,7 +155,6 @@ public class LoginActivity extends ActionBarActivity {
                             ResData resData = JSONObject.parseObject(result, ResData.class);
                             switch (resData.getCode_()) {
                                 // resData.getcode_()=0;
-                                // 调用接口成功
                                 case ReqCmd.RESULTCODE_SUCCESS:
                                     ViewUtil.showToast(mContext, resData.getMessage_());
                                     Intent intent = new Intent();
@@ -185,20 +188,16 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
-    protected void showProgressDialog(String message,boolean canBack){
+    protected void showProgressDialog(String message, boolean canBack) {
         closeProgressDialog();
-        pdpd = ProgressDialog.show(mContext, "",message, true, true);
+        pdpd = ProgressDialog.show(mContext, "", message, true, true);
         pdpd.setCanceledOnTouchOutside(false);
         pdpd.setCancelable(canBack);
     }
 
-    public void closeProgressDialog(){
-        if(pdpd != null && pdpd.isShowing())
+    public void closeProgressDialog() {
+        if (pdpd != null && pdpd.isShowing())
             pdpd.dismiss();
     }
-
-
-
-
 
 }

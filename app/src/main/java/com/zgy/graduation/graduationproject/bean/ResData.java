@@ -9,11 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.Serializable;
 
 /**
- * 描述：产品回复数据封装类
- * 创建人：李满义
- * 创建时间：2014-6-6 下午6:03:18
- * 修改人：
- * 修改时间：
+ * result from web
  */
 public class ResData implements Serializable {
     private static final long serialVersionUID = -1894466547675744738L;

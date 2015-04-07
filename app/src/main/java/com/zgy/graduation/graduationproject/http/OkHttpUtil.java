@@ -126,5 +126,8 @@ public class OkHttpUtil {
         return url + "?" + name + "=" + value;
     }
 
+    public static OkHttpClient getmOkHttpClient(){
+        return mOkHttpClient;
+    }
 
 }

@@ -5,11 +5,10 @@ package com.zgy.graduation.graduationproject.util;
  */
 public class ReqCmd {
 
-    /** 操作码_begin **/
-    //验证通过
+    /** login result success **/
     public static final int RESULTCODE_SUCCESS = 0;
 
-    //用户名、密码
+    //login
     public static final String USERNAME = "username",
                                 PASSWORD = "password";
 

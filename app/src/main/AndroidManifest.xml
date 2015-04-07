@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
 
     <application
         android:name=".SystemApplication"
@@ -26,7 +31,11 @@
             />
 
         <activity android:name=".activity.StorehouseActivity"
-            android:label="@string/storehouse_info"
+        android:label="@string/storehouse_info"
+        />
+
+        <activity android:name=".activity.findPestKindActivity"
+            android:label="@string/find_pest_kind"
             />
 
     </application>
