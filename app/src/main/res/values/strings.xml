@@ -14,6 +14,9 @@
     <string name="storehouse_info">仓库信息</string>
     <string name="storehouse_name">仓库名称</string>
     <string name="find_pest_kind">查询害虫种类</string>
+    <string name="choose_picture">选择照片</string>
+    <string name="post_picture">上传照片</string>
+    <string name="hint_text_picture">请对害虫进行简要的描述</string>
 
     <string name="network_error">网络异常,请检查网络设置！</string>
     <string name="server_error">服务器连接失败，请检查服务器端！</string>

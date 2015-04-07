@@ -89,6 +89,7 @@ public class LoginActivity extends ActionBarActivity {
                     Intent intent = new Intent();
                     intent.setClass(mContext, HomeActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }

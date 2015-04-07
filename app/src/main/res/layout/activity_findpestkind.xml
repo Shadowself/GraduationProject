@@ -3,24 +3,42 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/choose_way"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="拍照并裁减" />
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:padding="@dimen/common_margin_10">
+        <Button
+            android:id="@+id/choose_way"
+            style="@style/Button"
+            android:layout_width="@dimen/common_size_120"
+            android:layout_height="@dimen/common_size_48"
+            android:layout_marginLeft="@dimen/common_margin_10"
+            android:text="@string/choose_picture" />
 
-    <Button
-        android:id="@+id/ablum_way"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="获取相册后裁剪相片" />
+        <Button
+            android:id="@+id/ablum_way"
+            style="@style/Button"
+            android:layout_width="@dimen/common_size_120"
+            android:layout_height="@dimen/common_size_48"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/common_margin_10"
+            android:text="@string/post_picture" />
+
+        </RelativeLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="3"
+        android:focusableInTouchMode="true"
+        android:gravity="left|top"
+        android:maxLength="100"
+        android:padding="@dimen/common_margin_10"
+        android:layout_marginTop="@dimen/common_margin_10"
         android:background="@mipmap/text_bg"
-        android:hint="请对害虫进行简要的描述"/>
+        android:textColor="@color/blue"
+        android:hint="@string/hint_text_picture"/>
 
     <ImageView
         android:id="@+id/pestPicture"
