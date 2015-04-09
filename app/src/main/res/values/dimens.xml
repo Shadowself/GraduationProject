@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="horizontal_margin_16">16dp</dimen>
     <dimen name="vertical_margin_16">16dp</dimen>
+    <dimen name="common_margin_5">5dp</dimen>
     <dimen name="common_margin_10">10dp</dimen>
     <dimen name="common_margin_40">40dp</dimen>
 
@@ -14,6 +15,7 @@
     <!--layout-->
     <dimen name="common_size_30">30dp</dimen>
     <dimen name="common_size_48">48dp</dimen>
+    <dimen name="common_size_60">60dp</dimen>
     <dimen name="common_size_120">120dp</dimen>
     <dimen name="common_size_200">200dp</dimen>
 

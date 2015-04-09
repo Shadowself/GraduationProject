@@ -38,6 +38,10 @@
             android:label="@string/find_pest_kind"
             />
 
+        <activity android:name=".activity.AddStorehouseActivity"
+            android:label="@string/add_Storehouse"
+            />
+
     </application>
 
 </manifest>

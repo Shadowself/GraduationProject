@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/storeHouseName"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text1"
+            android:layout_alignBottom="@+id/text1"
+            android:layout_marginBottom="@dimen/common_margin_5"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="95sp"
+            />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/storeHouseName"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/new_storehouse_name"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/goodsName"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text2"
+            android:layout_alignBottom="@+id/text2"
+            android:layout_marginBottom="@dimen/common_margin_5"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="95sp"
+            />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/goodsName"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/new_storehouse_goods"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_marginTop="@dimen/common_margin_40"
+        android:layout_gravity="center"
+        android:text="确定"
+        style="@style/Button"/>
+
+</LinearLayout>

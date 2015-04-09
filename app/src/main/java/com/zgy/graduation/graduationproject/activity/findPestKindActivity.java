@@ -184,25 +184,43 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                         switch (which) {
                             case 0:
                                 //調用相冊
-                                Intent intentFromCapture = new Intent(Intent.ACTION_GET_CONTENT, null);
-                                intentFromCapture.setType("image/*");
-                                intentFromCapture.putExtra("crop", "true");
-                                intentFromCapture.putExtra("aspectX", 1);
-                                intentFromCapture.putExtra("aspectY", 1);
-                                intentFromCapture.putExtra("outputX", 200);
-                                intentFromCapture.putExtra("outputY", 200);
-                                intentFromCapture.putExtra("scale", true);
-                                intentFromCapture.putExtra("return-data", true);
-                                intentFromCapture.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                                intentFromCapture.putExtra("noFaceDetection", true); // no face detection
-                                startActivityForResult(intentFromCapture, 0);
+//                                Intent intentFromCapture = new Intent(Intent.ACTION_GET_CONTENT, null);
+//                                intentFromCapture.setType("image/*");
+//                                intentFromCapture.putExtra("crop", "true");
+//                                intentFromCapture.putExtra("aspectX", 1);
+//                                intentFromCapture.putExtra("aspectY", 1);
+//                                intentFromCapture.putExtra("outputX", 200);
+//                                intentFromCapture.putExtra("outputY", 200);
+//                                intentFromCapture.putExtra("scale", true);
+//                                intentFromCapture.putExtra("return-data", true);
+//                                intentFromCapture.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+//                                intentFromCapture.putExtra("noFaceDetection", true); // no face detection
+//                                startActivityForResult(intentFromCapture, 0);
+
+                                Intent intentFromCapture = new Intent(
+                                        MediaStore.ACTION_IMAGE_CAPTURE);
+                                // 判断存储卡是否可以用，可用进行存储
+
+                                intentFromCapture.putExtra(
+                                        MediaStore.EXTRA_OUTPUT,
+                                        Uri.fromFile(new File(Environment
+                                                .getExternalStorageDirectory(),
+                                                IMAGE_FILE_NAME)));
+
+                                startActivityForResult(intentFromCapture,0);
                                 break;
                             case 1:
                                 //调用相机
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// action is
-                                // capture
-                                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                                startActivityForResult(intent, 2);// or TAKE_SMALL_PICTURE
+//                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// action is
+//                                // capture
+//                                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+//                                startActivityForResult(intent, 2);// or TAKE_SMALL_PICTURE
+
+                                Intent intentFromGallery = new Intent();
+                                intentFromGallery.setType("image/*"); // 设置文件类型
+                                intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(intentFromGallery,2);
+
                                 break;
                         }
                     }
