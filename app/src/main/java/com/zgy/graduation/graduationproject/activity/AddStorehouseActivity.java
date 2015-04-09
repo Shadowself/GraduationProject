@@ -27,6 +27,7 @@ public class AddStorehouseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setChildContentView(R.layout.activity_addstorehouse);
         comm_title.setText(getString(R.string.add_Storehouse));
+        back_main.setVisibility(View.VISIBLE);
 
         storeHouseName = (EditText)findViewById(R.id.storeHouseName);
         goodsName = (EditText) findViewById(R.id.goodsName);
