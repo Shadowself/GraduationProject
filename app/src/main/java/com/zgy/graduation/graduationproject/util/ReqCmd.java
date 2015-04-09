@@ -14,7 +14,12 @@ public class ReqCmd {
 
     //仓库
     public static final String STOREHOUSENAME = "storeHouseName",
-                               GOODS ="goods";
+                               GOODS ="goods",
+                               FLAG = "flag";
+
+    public static final String ADD_FLAG = "1",
+                               CHANGE_FLAG = "2",
+                                DELETE_FLAG = "3";
 
     //
     public static final String REMEMBERCHECKED = "rememberChecked",

@@ -1,5 +1,6 @@
 package com.zgy.graduation.graduationproject.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import com.zgy.graduation.graduationproject.bean.ResData;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.StringUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
@@ -21,6 +23,7 @@ public class AddStorehouseActivity extends BaseActivity {
     private EditText storeHouseName;
     private EditText goodsName;
     private Button confirm_button;
+    protected Context mContext = AddStorehouseActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +38,26 @@ public class AddStorehouseActivity extends BaseActivity {
         confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddStoreHouse();
+
+                String storeString = storeHouseName.getText().toString().trim();
+                String goodsString = goodsName.getText().toString().trim();
+
+                if(StringUtils.isNotBlank(storeString) && StringUtils.isNotBlank(goodsString)){
+                    AddStoreHouse(storeString,goodsString);
+                }else{
+                    ViewUtil.showToast(mContext,"请先完善信息。。。");
+
+                }
             }
         });
     }
 
-    public void AddStoreHouse() {
+    public void AddStoreHouse(String storeString,String goodsString) {
         String url = getString(R.string.storehouse_url);
         JSONObject jsonString = new JSONObject();
-        jsonString.put(ReqCmd.STOREHOUSENAME, "1号仓库");
-        jsonString.put(ReqCmd.GOODS, "水稻");
+        jsonString.put(ReqCmd.FLAG,ReqCmd.ADD_FLAG);
+        jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
+        jsonString.put(ReqCmd.GOODS, goodsString);
         showProgressDialog(getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -66,7 +79,7 @@ public class AddStorehouseActivity extends BaseActivity {
 //                                    Intent intent = new Intent();
 //                                    intent.setClass(mContext, HomeActivity.class);
 //                                    startActivity(intent);
-//                                    finish();
+                                    finish();
 
                                     break;
                                 default:
