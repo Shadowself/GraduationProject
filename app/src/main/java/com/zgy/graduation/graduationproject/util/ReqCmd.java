@@ -19,7 +19,8 @@ public class ReqCmd {
 
     public static final String ADD_FLAG = "1",
                                CHANGE_FLAG = "2",
-                                DELETE_FLAG = "3";
+                                DELETE_FLAG = "3",
+                                GET_STOREHOUSE_FLAG = "4";
 
     //
     public static final String REMEMBERCHECKED = "rememberChecked",

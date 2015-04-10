@@ -13,6 +13,8 @@ import com.zgy.graduation.graduationproject.R;
 public class StorehouseActivity extends BaseActivity implements View.OnClickListener {
 
     private Button postPicture;
+    private Button deleteButton;
+    private Button changeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,13 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
         postPicture = (Button) findViewById(R.id.postPicture);
         postPicture.setOnClickListener(this);
+
+        deleteButton = (Button)findViewById(R.id.deleteStore);
+        deleteButton.setOnClickListener(this);
+
+        changeButton = (Button) findViewById(R.id.changeStore);
+        changeButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -32,6 +41,14 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 Intent intent = new Intent();
                 intent.setClass(this,findPestKindActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.deleteStore:
+
+                break;
+
+            case R.id.changeStore:
+
                 break;
         }
     }

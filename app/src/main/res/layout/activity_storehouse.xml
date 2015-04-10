@@ -12,9 +12,32 @@
 
     <Button
         android:id="@+id/postPicture"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="上传照片"
+        android:textSize="@dimen/text_size_20"
         />
+
+    <Button
+        android:id="@+id/deleteStore"
+        style="@style/Button"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deleteStoreHouse"
+        android:textSize="@dimen/text_size_20"
+        />
+
+    <Button
+        android:id="@+id/changeStore"
+        style="@style/Button"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/changeStoreHouse"
+        android:textSize="@dimen/text_size_20"
+        />
+
 
 </LinearLayout>
