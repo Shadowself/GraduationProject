@@ -49,6 +49,9 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
             case R.id.changeStore:
 
+                Intent changeIntent = new Intent();
+                changeIntent.setClass(this,ChangeStoreHouse.class);
+                startActivity(changeIntent);
                 break;
         }
     }

@@ -42,6 +42,10 @@
             android:label="@string/add_Storehouse"
             />
 
+        <activity android:name=".activity.ChangeStoreHouse"
+            android:label="@string/changeStoreHouse"
+            />
+
     </application>
 
 </manifest>
