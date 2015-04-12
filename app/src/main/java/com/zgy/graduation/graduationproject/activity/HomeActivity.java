@@ -65,13 +65,27 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Storehouse storehouse = gridItems.get(position);
+                JSONObject json = new JSONObject();
+                json.put("id",storehouse.getId());
+                json.put("storehouseName",storehouse.getStorehouseTitleResId());
+                json.put("goods",storehouse.getGoods());
                 Intent intent = new Intent();
                 intent.setClass(HomeActivity.this, StorehouseActivity.class);
+                intent.putExtra("jsonStorehouse",json.toJSONString());
                 startActivity(intent);
 
             }
         });
 
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAllStoreHouse();
     }
 
     public void getAllStoreHouse(){
@@ -97,10 +111,13 @@ public class HomeActivity extends BaseActivity {
                                 case ReqCmd.RESULTCODE_SUCCESS:
                                     ViewUtil.showToast(mContext, resData.getMessage_());
                                     JSONArray jsonArray = JSON.parseArray(resData.getData());
+                                    gridItems.clear();
                                     for (int i = 0; i < jsonArray.size(); i++) {
                                         JSONObject json = (JSONObject)jsonArray.get(i);
                                         Storehouse gridMenu = new Storehouse();
-                                        gridMenu.setStorehouseTitleResId(json.getString("storeHouseName"));
+                                        gridMenu.setId(Integer.valueOf(json.getString("storehouseId")));
+                                        gridMenu.setStorehouseTitleResId(json.getString("storehouseName"));
+                                        gridMenu.setGoods(json.getString("goods"));
                                         gridMenu.setStorehouseImgResId(R.mipmap.storehouse);
                                         gridItems.add(gridMenu);
                                     }

@@ -58,6 +58,7 @@ public class ChangeStoreHouse extends BaseActivity{
         jsonString.put(ReqCmd.FLAG,ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
         jsonString.put(ReqCmd.GOODS, goodsString);
+        jsonString.put(ReqCmd.STOREHOUSEID,"0");
         showProgressDialog(getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);

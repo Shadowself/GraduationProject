@@ -10,6 +10,8 @@ public class Storehouse implements Serializable {
 
     private int storehouseImgResId;
     private String storehouseTitleResId;
+    private int id;
+    private String goods;
 
     public int getStorehouseImgResId() {
         return storehouseImgResId;
@@ -25,5 +27,21 @@ public class Storehouse implements Serializable {
 
     public void setStorehouseTitleResId(String storehouseTitleResId) {
         this.storehouseTitleResId = storehouseTitleResId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getGoods() {
+        return goods;
+    }
+
+    public void setGoods(String goods) {
+        this.goods = goods;
     }
 }

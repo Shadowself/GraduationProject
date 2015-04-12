@@ -5,7 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.bean.ResData;
+import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
+import com.zgy.graduation.graduationproject.http.StringTaskHandler;
+import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
  * Created by zhangguoyu on 2015/4/2.
@@ -15,6 +21,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private Button postPicture;
     private Button deleteButton;
     private Button changeButton;
+    private JSONObject storehouseJson = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,13 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         changeButton = (Button) findViewById(R.id.changeStore);
         changeButton.setOnClickListener(this);
 
+        Intent intent = getIntent();
+        if(intent != null){
+            String jsonString = intent.getStringExtra("jsonStorehouse");
+            storehouseJson = JSONObject.parseObject(jsonString);
+            comm_title.setText(storehouseJson.getString("storehouseName"));
+        }
+
     }
 
     @Override
@@ -44,7 +58,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.deleteStore:
-
+                    deleteStore();
                 break;
 
             case R.id.changeStore:
@@ -55,4 +69,58 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    public void deleteStore() {
+        String url = getString(R.string.storehouse_url);
+        JSONObject jsonString = new JSONObject();
+        jsonString.put(ReqCmd.FLAG,ReqCmd.DELETE_FLAG);
+        jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));
+        showProgressDialog(getString(R.string.waiting), false);
+
+        HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
+        httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
+                    @Override
+                    public void onNetError() {
+                        ViewUtil.showToast(mContext, getString(R.string.network_error));
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+
+                        try {
+                            ResData resData = JSONObject.parseObject(result, ResData.class);
+                            switch (resData.getCode_()) {
+                                // resData.getcode_()=0;
+                                case ReqCmd.RESULTCODE_SUCCESS:
+                                    ViewUtil.showToast(mContext, resData.getMessage_());
+//                                    Intent intent = new Intent();
+//                                    intent.setClass(mContext, HomeActivity.class);
+//                                    startActivity(intent);
+                                    finish();
+
+                                    break;
+                                default:
+                                    ViewUtil.showToast(mContext, resData.getMessage_());
+                                    break;
+                            }
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail() {
+                        ViewUtil.showToast(mContext, getString(R.string.server_error));
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        closeProgressDialog();
+                    }
+
+                }
+        );
+    }
+
 }

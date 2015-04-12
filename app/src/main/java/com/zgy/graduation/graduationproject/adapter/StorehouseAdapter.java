@@ -25,12 +25,18 @@ public class StorehouseAdapter extends BaseAdapter {
     public StorehouseAdapter(Context context) {
         super();
         this.mContext = context;
-
+        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public void setList(List<Storehouse> list) {
         this.list = list;
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    }
+
+    public void cleanAndsetList(List<Storehouse> list){
+        this.list.clear();
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @Override
