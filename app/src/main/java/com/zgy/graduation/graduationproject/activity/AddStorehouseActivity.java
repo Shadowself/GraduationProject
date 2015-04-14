@@ -13,6 +13,7 @@ import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.StringUtils;
+import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
@@ -58,7 +59,8 @@ public class AddStorehouseActivity extends BaseActivity {
         jsonString.put(ReqCmd.FLAG,ReqCmd.ADD_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
         jsonString.put(ReqCmd.GOODS, goodsString);
-        showProgressDialog(getString(R.string.waiting), false);
+//        showProgressDialog(getString(R.string.waiting), false);
+        SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
@@ -99,7 +101,8 @@ public class AddStorehouseActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-                        closeProgressDialog();
+//                        closeProgressDialog();
+                        SweetAlertDialogUtils.closeProgressDialog();
                     }
 
                 }

@@ -11,7 +11,10 @@ import com.zgy.graduation.graduationproject.bean.ResData;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by zhangguoyu on 2015/4/2.
@@ -22,6 +25,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private Button deleteButton;
     private Button changeButton;
     private JSONObject storehouseJson = new JSONObject();
+    private SweetAlertDialog sweetAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,27 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
             case R.id.deleteStore:
 
-                deleteStore();
+                sweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
+                sweetAlertDialog.setTitleText(mContext.getString(R.string.delete_true))
+//                .setContentText("Won't be able to recover this file!")
+                        .setCancelText("No")
+                        .setConfirmText("Yes")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+
+                                deleteStore();
+                            }
+                        })
+                        .show();
+
                 break;
 
             case R.id.changeStore:
@@ -76,13 +100,16 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.DELETE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));
-        showProgressDialog(getString(R.string.waiting), false);
+//        showProgressDialog(getString(R.string.waiting), false);
+//        SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
                     @Override
                     public void onNetError() {
-                        ViewUtil.showToast(mContext, getString(R.string.network_error));
+//                        ViewUtil.showToast(mContext, getString(R.string.network_error));
+                        sweetAlertDialog.dismiss();
+                        SweetAlertDialogUtils.showErrorDialog(mContext,getString(R.string.network_error));
                     }
 
                     @Override
@@ -97,10 +124,19 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 //                                    Intent intent = new Intent();
 //                                    intent.setClass(mContext, HomeActivity.class);
 //                                    startActivity(intent);
+                                    sweetAlertDialog.dismiss();
+                                    new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText(getString(R.string.delete_success))
+//                                            .setContentText("Your imaginary file has been deleted!")
+                                            .setConfirmText("OK")
+                                            .showCancelButton(false)
+                                            .setCancelClickListener(null)
+                                            .setConfirmClickListener(null).show();
                                     finish();
 
                                     break;
                                 default:
+                                    sweetAlertDialog.dismiss();
                                     ViewUtil.showToast(mContext, resData.getMessage_());
                                     break;
                             }
@@ -112,12 +148,16 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
                     @Override
                     public void onFail() {
-                        ViewUtil.showToast(mContext, getString(R.string.server_error));
+//                        ViewUtil.showToast(mContext, getString(R.string.server_error));
+                        sweetAlertDialog.dismiss();
+                        SweetAlertDialogUtils.showErrorDialog(mContext,getString(R.string.server_error));
                     }
 
                     @Override
                     public void onFinish() {
-                        closeProgressDialog();
+//                        closeProgressDialog();
+//                        SweetAlertDialogUtils.closeProgressDialog();
+
                     }
 
                 }

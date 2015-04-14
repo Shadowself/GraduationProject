@@ -14,10 +14,6 @@ public class SweetAlertDialogUtils {
 
     public static void showProgressDialog(Context mContext,String message, boolean canBack) {
         closeProgressDialog();
-//        pdpd = ProgressDialog.show(mContext, "", message, true, true);
-//        pdpd.setCanceledOnTouchOutside(false);
-//        pdpd.setCancelable(canBack);
-
         pDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText(message);
@@ -28,6 +24,16 @@ public class SweetAlertDialogUtils {
     public static void closeProgressDialog() {
         if (pDialog != null && pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    public static void showErrorDialog(Context mContext,String message){
+        new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+                .setTitleText("")
+                .setContentText(message)
+                .setConfirmText("OK")
+                .showCancelButton(false)
+                .setCancelClickListener(null)
+                .setConfirmClickListener(null).show();
     }
 
 

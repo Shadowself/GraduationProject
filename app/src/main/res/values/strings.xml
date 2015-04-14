@@ -31,4 +31,9 @@
     <string name="logining">Logining…</string>
     <string name="waiting">Loading…</string>
 
+    <string name="delete_true">确定要删除吗？</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="delete_success">删除成功！</string>
+
 </resources>
