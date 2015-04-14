@@ -157,7 +157,6 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                     public void onFinish() {
 //                        closeProgressDialog();
 //                        SweetAlertDialogUtils.closeProgressDialog();
-
                     }
 
                 }
