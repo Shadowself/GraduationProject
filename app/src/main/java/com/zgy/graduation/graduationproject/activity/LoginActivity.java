@@ -1,6 +1,5 @@
 package com.zgy.graduation.graduationproject.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.PreferencesUtil;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 
@@ -30,7 +30,6 @@ public class LoginActivity extends ActionBarActivity {
     private CheckBox rememberPswd;
     private CheckBox autoLogin;
     private PreferencesUtil preferencesUtil = null;
-    private ProgressDialog pdpd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,8 +139,8 @@ public class LoginActivity extends ActionBarActivity {
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);
-        showProgressDialog(getString(R.string.logining), false);
-
+//        showProgressDialog(getString(R.string.logining), false);
+        SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.logining),false);
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
                     @Override
@@ -181,24 +180,13 @@ public class LoginActivity extends ActionBarActivity {
 
                     @Override
                     public void onFinish() {
-                        closeProgressDialog();
+//                        closeProgressDialog();
+                        SweetAlertDialogUtils.closeProgressDialog();
                     }
 
                 }
         );
 
-    }
-
-    protected void showProgressDialog(String message, boolean canBack) {
-        closeProgressDialog();
-        pdpd = ProgressDialog.show(mContext, "", message, true, true);
-        pdpd.setCanceledOnTouchOutside(false);
-        pdpd.setCancelable(canBack);
-    }
-
-    public void closeProgressDialog() {
-        if (pdpd != null && pdpd.isShowing())
-            pdpd.dismiss();
     }
 
 }
