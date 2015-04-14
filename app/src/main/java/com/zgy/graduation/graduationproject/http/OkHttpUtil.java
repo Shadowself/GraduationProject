@@ -5,7 +5,9 @@ package com.zgy.graduation.graduationproject.http;
  */
 
 import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
@@ -14,6 +16,7 @@ import com.squareup.okhttp.Response;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -86,6 +89,42 @@ public class OkHttpUtil {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .build();
+
+        Response response = execute(request);
+        if (response.isSuccessful()) {
+            String responseUrl = response.body().string();
+            return responseUrl;
+        } else {
+            throw new IOException("Unexpected code " + response);
+        }
+    }
+    private static final String IMGUR_CLIENT_ID = "...";
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/*");
+
+    /**
+     * post picture to server
+     * @param url
+     * @param text
+     * @param path
+     * @return
+     * @throws IOException
+     */
+    public static String postPictureToSerVer(String url,String text,String path) throws IOException {
+        RequestBody requestBody = new MultipartBuilder()
+                .type(MultipartBuilder.FORM)
+                .addPart(
+                        Headers.of("Content-Disposition", "form-data; name=\"title\""),
+                        RequestBody.create(null, text))
+                .addPart(
+                        Headers.of("Content-Disposition", "form-data; name=\"image\""),
+                        RequestBody.create(MEDIA_TYPE_PNG, new File(path)))
+                .build();
+
+        Request request = new Request.Builder()
+                .header("Authorization", "Client-ID " + IMGUR_CLIENT_ID)
+                .url(url)
+                .post(requestBody)
                 .build();
 
         Response response = execute(request);

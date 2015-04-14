@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.Request;
@@ -17,6 +18,7 @@ import com.squareup.okhttp.Response;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,22 @@ public class HttpAsyncTaskManager implements AsyncRequest {
         if (mContext != null) {
             synchronized (this) {
                 new HttpStreamBytesTask(mContext, url, 1, param, handler).execute("");
+            }
+
+        }
+    }
+
+    /**
+     * post picture and describe
+     * @param url
+     * @param param
+     * @param handler
+     */
+    public void requestMapStream(String url, List<String> param,
+                              TaskHandler handler) {
+        if (mContext != null) {
+            synchronized (this) {
+                new HttpMapStreamTask(mContext, url, 1, param, handler).execute("");
             }
 
         }
@@ -269,6 +287,111 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                         request = new Request.Builder()
                                 .url(url)
                                 .post(body)
+                                .build();
+
+                        response = OkHttpUtil.execute(request);
+                        if (response.code() == 200) {
+                            is = response.body().byteStream();
+                            return IOUtils.stream2String(is);
+                        } else {
+                            handler.onError();
+                            Log.e(TAG, IOUtils.stream2String(is));
+                        }
+
+                    } catch (Exception e) {
+
+                        Log.e(TAG, "____post___" + e.toString() + "_____");
+                        handler.onError();
+                    }
+                }
+            }
+            return null;
+        }
+
+        protected void onPostExecute(String result) {
+            if (result == null) {
+                handler.onFail();
+            } else {
+                handler.onSuccess(handler.parseResult(result));
+            }
+            handler.onFinish();
+        }
+
+    }
+
+    /** post picture
+     * String task
+     */
+    private static final String IMGUR_CLIENT_ID = "...";
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/*");
+
+    private static class HttpMapStreamTask extends
+            AsyncTask<String, Integer, String> {
+
+        Context context;
+        String url;
+        /** 0 is get,1 is post */
+        int type = 0;
+        TaskHandler handler;
+        List<String> json;
+
+        public HttpMapStreamTask(Context context, String url, int type,
+                              List<String> json, TaskHandler handler) {
+            this.context = context;
+            this.url = url;
+            this.type = type;
+            this.handler = handler;
+            this.json = json;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (!NetWorkStatus.networkIsAvailable(context)) {// network is break
+                handler.onNetError();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... param) {
+            // TODO Auto-generated method stub
+            if (NetWorkStatus.networkIsAvailable(context)) {// network is well
+                String responseStr = null;
+                InputStream is = null;
+                Request request = null;
+                Response response = null;
+                if (type == 0) {// get
+                    try {
+                        request = new Request.Builder().url(url).build();
+                        response = OkHttpUtil.execute(request);
+                        if (response.isSuccessful()) {
+                            is = response.body().byteStream();
+                            responseStr = IOUtils.stream2String(is);
+                            return responseStr;
+                        } else {
+                            handler.onError();
+                            Log.e(TAG, IOUtils.stream2String(is));
+//                            throw new IOException("Unexpected code " + response);
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "____get___" + e.toString() + "_____");
+                        handler.onError();
+                    }
+                } else {// post
+                    try {
+                        RequestBody requestBody = new MultipartBuilder()
+                                .type(MultipartBuilder.FORM)
+                                .addPart(
+                                        Headers.of("Content-Disposition", "form-data; name=\"title\""),
+                                        RequestBody.create(null, json.get(0)))
+                                .addPart(
+                                        Headers.of("Content-Disposition", "form-data; name=\"image\""),
+                                        RequestBody.create(MEDIA_TYPE_PNG, new File(json.get(1))))
+                                .build();
+
+                        request = new Request.Builder()
+                                .header("Authorization", "Client-ID " + IMGUR_CLIENT_ID)
+                                .url(url)
+                                .post(requestBody)
                                 .build();
 
                         response = OkHttpUtil.execute(request);

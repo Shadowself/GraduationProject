@@ -31,6 +31,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
 
     private ImageView pestPicture;
     private Button choose_way;
+    private Button postPicture;
 
     private static final String IMAGE_FILE_LOCATION = "file:///sdcard/tempPicture.jpg";// temp
     // file
@@ -51,8 +52,22 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         choose_way = (Button) findViewById(R.id.choose_way);
         choose_way.setOnClickListener(this);
 
+        postPicture = (Button) findViewById(R.id.postPicture);
+        postPicture.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.choose_way:
+                createDialog();
+                break;
+            case R.id.postPicture:
+
+                break;
+        }
+    }
 
     //保存到sd卡
     public static void savePhotoToSDCard(String path, String photoName,
@@ -185,16 +200,6 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                         dialog.dismiss();
                     }
                 }).show();
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.choose_way:
-                createDialog();
-                break;
-        }
     }
 
     public void keepPicture(Bitmap photo) {
