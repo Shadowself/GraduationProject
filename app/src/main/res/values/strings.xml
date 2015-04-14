@@ -25,10 +25,10 @@
     <string name="deleteStoreHouse">删除仓库</string>
     <string name="changeStoreHouse">修改仓库</string>
 
-    <string name="network_error">坑爹的，没网你登什么登！</string>
+    <string name="network_error">网络连接失败，请检查网络设置！</string>
     <string name="server_error">没找到服务器，请检查服务器连接！</string>
     <string name="text_empty">用户名或密码不能为空！</string>
-    <string name="logining">正在登陆…</string>
-    <string name="waiting">请稍后…</string>
+    <string name="logining">Logining…</string>
+    <string name="waiting">Loading…</string>
 
 </resources>

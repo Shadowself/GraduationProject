@@ -33,14 +33,14 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         postPicture = (Button) findViewById(R.id.postPicture);
         postPicture.setOnClickListener(this);
 
-        deleteButton = (Button)findViewById(R.id.deleteStore);
+        deleteButton = (Button) findViewById(R.id.deleteStore);
         deleteButton.setOnClickListener(this);
 
         changeButton = (Button) findViewById(R.id.changeStore);
         changeButton.setOnClickListener(this);
 
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             String jsonString = intent.getStringExtra("jsonStorehouse");
             storehouseJson = JSONObject.parseObject(jsonString);
             comm_title.setText(storehouseJson.getString("storehouseName"));
@@ -50,21 +50,22 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.postPicture:
                 Intent intent = new Intent();
-                intent.setClass(this,findPestKindActivity.class);
+                intent.setClass(this, findPestKindActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.deleteStore:
-                    deleteStore();
+
+                deleteStore();
                 break;
 
             case R.id.changeStore:
 
                 Intent changeIntent = new Intent();
-                changeIntent.setClass(this,ChangeStoreHouse.class);
+                changeIntent.setClass(this, ChangeStoreHouse.class);
                 startActivity(changeIntent);
                 break;
         }
@@ -73,7 +74,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     public void deleteStore() {
         String url = getString(R.string.storehouse_url);
         JSONObject jsonString = new JSONObject();
-        jsonString.put(ReqCmd.FLAG,ReqCmd.DELETE_FLAG);
+        jsonString.put(ReqCmd.FLAG, ReqCmd.DELETE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));
         showProgressDialog(getString(R.string.waiting), false);
 

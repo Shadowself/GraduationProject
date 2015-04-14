@@ -17,6 +17,7 @@ import com.zgy.graduation.graduationproject.bean.Storehouse;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -91,8 +92,9 @@ public class HomeActivity extends BaseActivity {
     public void getAllStoreHouse(){
         String url = getString(R.string.storehouse_url);
         JSONObject jsonString = new JSONObject();
-        jsonString.put(ReqCmd.FLAG,ReqCmd.GET_STOREHOUSE_FLAG);
-        showProgressDialog(getString(R.string.waiting), false);
+        jsonString.put(ReqCmd.FLAG, ReqCmd.GET_STOREHOUSE_FLAG);
+//        showProgressDialog(getString(R.string.waiting), false);
+        SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting),false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
@@ -113,7 +115,7 @@ public class HomeActivity extends BaseActivity {
                                     JSONArray jsonArray = JSON.parseArray(resData.getData());
                                     gridItems.clear();
                                     for (int i = 0; i < jsonArray.size(); i++) {
-                                        JSONObject json = (JSONObject)jsonArray.get(i);
+                                        JSONObject json = (JSONObject) jsonArray.get(i);
                                         Storehouse gridMenu = new Storehouse();
                                         gridMenu.setId(Integer.valueOf(json.getString("storehouseId")));
                                         gridMenu.setStorehouseTitleResId(json.getString("storehouseName"));
@@ -146,8 +148,10 @@ public class HomeActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-                        closeProgressDialog();
+//                        closeProgressDialog();
+                        SweetAlertDialogUtils.closeProgressDialog();
                     }
+
 
                 }
         );
