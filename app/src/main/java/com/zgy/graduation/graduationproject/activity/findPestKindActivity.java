@@ -13,15 +13,20 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
+import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.DeviceUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhangguoyu on 2015/4/7.
@@ -32,14 +37,17 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
     private ImageView pestPicture;
     private Button choose_way;
     private Button postPicture;
+    private EditText pestText;
 
     private static final String IMAGE_FILE_LOCATION = "file:///sdcard/tempPicture.jpg";// temp
     // file
     Uri imageUri = Uri.parse(IMAGE_FILE_LOCATION);// The Uri to store the big
     // bitmap
-    public static String userPhoto = String.format("%spicture%s",
-            DeviceUtil.getSDcardDir()
-                    + DeviceUtil.DEFAULTBASEPATH, File.separator);
+//    public static String userPhoto = String.format("%spicture%s",
+//            DeviceUtil.getSDcardDir()
+//                    + DeviceUtil.DEFAULTBASEPATH, File.separator);
+
+    private String userPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         postPicture = (Button) findViewById(R.id.postPicture);
         postPicture.setOnClickListener(this);
 
+        pestText = (EditText)findViewById(R.id.pestText);
     }
 
     @Override
@@ -64,6 +73,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                 createDialog();
                 break;
             case R.id.postPicture:
+                postPictureToServer();
 
                 break;
         }
@@ -204,7 +214,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
 
     public void keepPicture(Bitmap photo) {
         FileOutputStream b = null;
-        String userPhoto = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
+        userPhoto = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
                 File.separator,
                 "temp");
         File file = new File(userPhoto);
@@ -220,4 +230,38 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         }
 
     }
+
+    public void postPictureToServer(){
+        String url = getString(R.string.postPest_url);
+        String describe = pestText.getText().toString().trim();
+
+        List<String> pestInfo = new ArrayList<String>();
+        pestInfo.add(describe);
+        pestInfo.add(userPhoto);
+
+        HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
+        httpAsyncTaskManager.requestMapStream(url, pestInfo, new StringTaskHandler() {
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onNetError() {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
+    }
+
 }
