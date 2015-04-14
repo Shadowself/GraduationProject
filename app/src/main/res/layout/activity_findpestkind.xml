@@ -30,6 +30,7 @@
         </RelativeLayout>
 
     <EditText
+        android:id="@+id/pestText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/comm_EditText"
