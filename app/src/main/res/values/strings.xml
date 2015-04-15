@@ -36,4 +36,6 @@
     <string name="no">no</string>
     <string name="delete_success">删除成功！</string>
 
+    <string name="pestInfo_empty">请先获取虫子照片并对其简单描述！</string>
+
 </resources>

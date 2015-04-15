@@ -16,10 +16,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.bean.ResData;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.DeviceUtil;
+import com.zgy.graduation.graduationproject.util.ReqCmd;
+import com.zgy.graduation.graduationproject.util.StringUtils;
+import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
+import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,9 +49,10 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
     // file
     Uri imageUri = Uri.parse(IMAGE_FILE_LOCATION);// The Uri to store the big
     // bitmap
-//    public static String userPhoto = String.format("%spicture%s",
-//            DeviceUtil.getSDcardDir()
-//                    + DeviceUtil.DEFAULTBASEPATH, File.separator);
+    public static String picturePath = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
+            File.separator,
+            "temp");
+
 
     private String userPhoto;
 
@@ -73,8 +80,13 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                 createDialog();
                 break;
             case R.id.postPicture:
-                postPictureToServer();
-
+                String describe = pestText.getText().toString().trim();
+                File file = new File(userPhoto);
+                if(StringUtils.isNotBlank(describe) && file.exists()){
+                    postPictureToServer(describe);
+                }else{
+                    ViewUtil.showToast(mContext,getString(R.string.pestInfo_empty));
+                }
                 break;
         }
     }
@@ -135,7 +147,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                             bp = decodeUriAsBitmap(originalUri);
                         }
                         pestPicture.setImageBitmap(bp);
-                        keepPicture(bp);
+                        keepPictureToSDCard(bp);
 //                        savePhotoToSDCard(userPhoto, "image.jpg", bp);
                     } else {
                         Log.e(TAG, "CHOOSE_SMALL_PICTURE: data = " + data);
@@ -146,7 +158,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                         Bitmap bmp = decodeUriAsBitmap(imageUri);
                         pestPicture.setImageBitmap(bmp);
 //                        savePhotoToSDCard(userPhoto, "image.jpg", bmp);
-                        keepPicture(bmp);
+                        keepPictureToSDCard(bmp);
                     } else {
                         Log.e(TAG, "CROP_SMALL_PICTURE: data = " + data);
                     }
@@ -212,7 +224,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                 }).show();
     }
 
-    public void keepPicture(Bitmap photo) {
+    public void keepPictureToSDCard(Bitmap photo) {
         FileOutputStream b = null;
         userPhoto = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
                 File.separator,
@@ -231,34 +243,53 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
 
     }
 
-    public void postPictureToServer(){
+    public void postPictureToServer(String describe){
         String url = getString(R.string.postPest_url);
-        String describe = pestText.getText().toString().trim();
 
         List<String> pestInfo = new ArrayList<String>();
         pestInfo.add(describe);
         pestInfo.add(userPhoto);
-
+        SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.logining), false);
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestMapStream(url, pestInfo, new StringTaskHandler() {
             @Override
             public void onFinish() {
-
+                SweetAlertDialogUtils.closeProgressDialog();
             }
 
             @Override
             public void onNetError() {
-
+                ViewUtil.showToast(mContext, getString(R.string.network_error));
             }
 
             @Override
             public void onSuccess(String result) {
+                try {
+                    ResData resData = JSONObject.parseObject(result, ResData.class);
+                    switch (resData.getCode_()) {
+                        // resData.getcode_()=0;
+                        case ReqCmd.RESULTCODE_SUCCESS:
+                            ViewUtil.showToast(mContext, resData.getMessage_());
+                            File file = new File(userPhoto);
+                            if(file.exists()){
+                                file.delete();
+                            }
+                            finish();
+
+                            break;
+                        default:
+                            ViewUtil.showToast(mContext, resData.getMessage_());
+                            break;
+                    }
+                } catch (Exception e) {
+
+                }
 
             }
 
             @Override
             public void onFail() {
-
+                ViewUtil.showToast(mContext, getString(R.string.server_error));
             }
         });
 

@@ -90,6 +90,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
                 Intent changeIntent = new Intent();
                 changeIntent.setClass(this, ChangeStoreHouse.class);
+                changeIntent.putExtra("jsonStorehouse",storehouseJson.toJSONString());
                 startActivity(changeIntent);
                 break;
         }

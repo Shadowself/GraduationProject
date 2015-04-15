@@ -1,6 +1,7 @@
 package com.zgy.graduation.graduationproject.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class ChangeStoreHouse extends BaseActivity{
     private EditText storeHouseName;
     private EditText goodsName;
     private Button confirm_button;
+    private JSONObject storehouseJson = new JSONObject();
     protected Context mContext = ChangeStoreHouse.this;
 
     @Override
@@ -49,7 +51,11 @@ public class ChangeStoreHouse extends BaseActivity{
                 }
             }
         });
-
+        Intent intent = getIntent();
+        if (intent != null) {
+            String jsonString = intent.getStringExtra("jsonStorehouse");
+            storehouseJson = JSONObject.parseObject(jsonString);
+        }
 
     }
 
@@ -59,7 +65,7 @@ public class ChangeStoreHouse extends BaseActivity{
         jsonString.put(ReqCmd.FLAG,ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
         jsonString.put(ReqCmd.GOODS, goodsString);
-        jsonString.put(ReqCmd.STOREHOUSEID,"0");
+        jsonString.put(ReqCmd.STOREHOUSEID,storehouseJson.getString("storehouseName"));
 //        showProgressDialog(getString(R.string.waiting), false);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
 
