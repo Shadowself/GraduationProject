@@ -8,7 +8,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.Request;
@@ -323,7 +322,7 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      * String task
      */
     private static final String IMGUR_CLIENT_ID = "...";
-    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/*");
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/jpg");
 
     private static class HttpMapStreamTask extends
             AsyncTask<String, Integer, String> {
@@ -378,13 +377,11 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                     }
                 } else {// post
                     try {
+                        long time=System.currentTimeMillis();
                         RequestBody requestBody = new MultipartBuilder()
                                 .type(MultipartBuilder.FORM)
-                                .addPart(
-                                        Headers.of("Content-Disposition", "form-data; name=\"title\""),
-                                        RequestBody.create(null, json.get(0)))
-                                .addPart(
-                                        Headers.of("Content-Disposition", "form-data; name=\"image\""),
+                                .addFormDataPart("title", json.get(0))
+                                .addFormDataPart("image", time+"pest.jpg",
                                         RequestBody.create(MEDIA_TYPE_PNG, new File(json.get(1))))
                                 .build();
 
