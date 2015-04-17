@@ -322,7 +322,7 @@ public class HttpAsyncTaskManager implements AsyncRequest {
      * String task
      */
     private static final String IMGUR_CLIENT_ID = "...";
-    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/jpg");
+    private static final MediaType MEDIA_TYPE_JPG = MediaType.parse("image/jpg");
 
     private static class HttpMapStreamTask extends
             AsyncTask<String, Integer, String> {
@@ -382,7 +382,7 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                                 .type(MultipartBuilder.FORM)
                                 .addFormDataPart("title", json.get(0))
                                 .addFormDataPart("image", time+"pest.jpg",
-                                        RequestBody.create(MEDIA_TYPE_PNG, new File(json.get(1))))
+                                        RequestBody.create(MEDIA_TYPE_JPG, new File(json.get(1))))
                                 .build();
 
                         request = new Request.Builder()
