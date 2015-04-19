@@ -380,9 +380,10 @@ public class HttpAsyncTaskManager implements AsyncRequest {
                         long time=System.currentTimeMillis();
                         RequestBody requestBody = new MultipartBuilder()
                                 .type(MultipartBuilder.FORM)
-                                .addFormDataPart("title", json.get(0))
+                                .addFormDataPart("storehouseId",json.get(0))
+                                .addFormDataPart("title", json.get(1))
                                 .addFormDataPart("image", time+"pest.jpg",
-                                        RequestBody.create(MEDIA_TYPE_JPG, new File(json.get(1))))
+                                        RequestBody.create(MEDIA_TYPE_JPG, new File(json.get(2))))
                                 .build();
 
                         request = new Request.Builder()

@@ -69,6 +69,7 @@ public class HomeActivity extends BaseActivity {
                 Storehouse storehouse = gridItems.get(position);
                 JSONObject json = new JSONObject();
                 json.put("id",storehouse.getId());
+                preferencesUtil.saveString(ReqCmd.STOREHOUSEID,Integer.toString(storehouse.getId()));
                 json.put("storehouseName",storehouse.getStorehouseTitleResId());
                 json.put("goods",storehouse.getGoods());
                 Intent intent = new Intent();

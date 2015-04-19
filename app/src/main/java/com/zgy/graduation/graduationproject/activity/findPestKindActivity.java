@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by zhangguoyu on 2015/4/7.
  */
@@ -247,6 +249,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         String url = getString(R.string.postPest_url);
 
         List<String> pestInfo = new ArrayList<String>();
+        pestInfo.add(preferencesUtil.getString(ReqCmd.STOREHOUSEID));
         pestInfo.add(describe);
         pestInfo.add(userPhoto);
         SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.logining), false);
@@ -274,7 +277,13 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                             if(file.exists()){
                                 file.delete();
                             }
-                            finish();
+
+                            new SweetAlertDialog(mContext)
+                                    .setTitleText("害虫信息")
+                                    .setContentText(resData.getData())
+                                    .show();
+
+//                            finish();
 
                             break;
                         default:

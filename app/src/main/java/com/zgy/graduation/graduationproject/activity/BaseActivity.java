@@ -24,7 +24,7 @@ public class BaseActivity extends Activity{
 
     protected Context mContext = BaseActivity.this;
     private static Stack<Activity> activityStack = new Stack<Activity>();
-    private PreferencesUtil preferencesUtil = null;
+    protected PreferencesUtil preferencesUtil = null;
     // 标题栏以下部分内容布局类对象
     protected LinearLayout viewContent = null;
     protected TextView comm_title;
