@@ -24,6 +24,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private Button postPicture;
     private Button deleteButton;
     private Button changeButton;
+    private Button getInfoFromTest;
     private JSONObject storehouseJson = new JSONObject();
     private SweetAlertDialog sweetAlertDialog;
 
@@ -42,6 +43,9 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
         changeButton = (Button) findViewById(R.id.changeStore);
         changeButton.setOnClickListener(this);
+
+        getInfoFromTest = (Button) findViewById(R.id.getInfoFromTest);
+        getInfoFromTest.setOnClickListener(this);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -92,6 +96,12 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 changeIntent.setClass(this, ChangeStoreHouse.class);
                 changeIntent.putExtra("jsonStorehouse",storehouseJson.toJSONString());
                 startActivity(changeIntent);
+                break;
+            case R.id.getInfoFromTest:
+                Intent intent1 = new Intent();
+                intent1.setClass(this, getInfoFromTestActivity.class);
+//                intent1.putExtra("jsonStorehouse",storehouseJson.toJSONString());
+                startActivity(intent1);
                 break;
         }
     }

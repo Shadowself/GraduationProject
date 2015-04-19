@@ -48,6 +48,10 @@
             android:label="@string/changeStoreHouse"
             />
 
+        <activity android:name=".activity.getInfoFromTestActivity"
+            android:label="@string/getStorehouseInfo"
+            />
+
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@
 
     <string name="deleteStoreHouse">删除仓库</string>
     <string name="changeStoreHouse">修改仓库</string>
+    <string name="getStorehouseInfo">分析测量值</string>
 
     <string name="network_error">网络连接失败，请检查网络设置！</string>
     <string name="server_error">没找到服务器，请检查服务器连接！</string>
@@ -35,7 +36,15 @@
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="delete_success">删除成功！</string>
+    <string name="pestInfo">害虫信息</string>
 
     <string name="pestInfo_empty">请先获取虫子照片并对其简单描述！</string>
+
+    <string name="place">位置:</string>
+    <string name="temperature_goods">温度:</string>
+    <string name="dampness_goods">湿度:</string>
+    <string name="pestKind">害虫种类:</string>
+    <string name="pestNumber">害虫数量:</string>
+    <string name="make_sure">确认</string>
 
 </resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/place"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text1"
+            android:layout_alignBottom="@+id/text1"
+            android:ems="10"
+            android:lines="1"
+            android:hint="如：东北角"
+            android:textColorHint="@color/sep_line"
+            android:maxLength="16"
+            android:paddingLeft="57sp" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/place"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_10"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/place"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center"
+        >
+
+        <EditText
+            android:id="@+id/temperature_goods"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text2"
+            android:layout_alignBottom="@+id/text2"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="57sp" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/temperature_goods"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_10"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/temperature_goods"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center"
+        >
+
+        <EditText
+            android:id="@+id/dampness_goods"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text3"
+            android:layout_alignBottom="@+id/text3"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="57sp" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dampness_goods"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_10"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/dampness_goods"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center"
+        >
+
+        <EditText
+            android:id="@+id/pestKind"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text4"
+            android:layout_alignBottom="@+id/text4"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="95sp" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pestKind"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_10"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/pestKind"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center"
+        >
+
+        <EditText
+            android:id="@+id/pestNumber"
+            style="@style/comm_EditText"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_alignBaseline="@+id/text5"
+            android:layout_alignBottom="@+id/text5"
+            android:ems="10"
+            android:lines="1"
+            android:maxLength="16"
+            android:paddingLeft="95sp" />
+
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/pestNumber"
+            android:layout_marginTop="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_10"
+            android:gravity="center_vertical"
+            android:paddingLeft="7.0sp"
+            android:text="@string/pestNumber"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/pastButton"
+        style="@style/Button"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/make_sure"
+        />
+
+
+</LinearLayout>

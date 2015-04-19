@@ -279,7 +279,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                             }
 
                             new SweetAlertDialog(mContext)
-                                    .setTitleText("害虫信息")
+                                    .setTitleText(getString(R.string.pestInfo))
                                     .setContentText(resData.getData())
                                     .show();
 
