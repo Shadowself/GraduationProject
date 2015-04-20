@@ -83,12 +83,12 @@ public class LoginActivity extends ActionBarActivity {
                         preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED, false);
                     }
 
-//                    Login(username, pswd);
+                    Login(username, pswd);
 
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent();
+//                    intent.setClass(mContext, HomeActivity.class);
+//                    startActivity(intent);
+//                    finish();
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }

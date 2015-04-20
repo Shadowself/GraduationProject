@@ -39,6 +39,7 @@
     <string name="pestInfo">害虫信息</string>
 
     <string name="pestInfo_empty">请先获取虫子照片并对其简单描述！</string>
+    <string name="testInfo_empty">为保证分析数据的准确性，请完善信息！</string>
 
     <string name="place">位置:</string>
     <string name="temperature_goods">温度:</string>

@@ -28,4 +28,10 @@ public class ReqCmd {
            AUTOLOGINCHECKED = "autologinChecked";
 
 
+    public static final String PLACE = "place",
+                                TEMPERATURE ="temperature_goods",
+                                DAMPNESS = "dampness_goods",
+                                PESTKIND = "pestKind",
+                                PESTNUMBER = "pestNumber";
+
 }
