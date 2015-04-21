@@ -25,6 +25,7 @@
     <string name="deleteStoreHouse">删除仓库</string>
     <string name="changeStoreHouse">修改仓库</string>
     <string name="getStorehouseInfo">分析测量值</string>
+    <string name="getTestInfoHistory">查询测量值历史</string>
 
     <string name="network_error">网络连接失败，请检查网络设置！</string>
     <string name="server_error">没找到服务器，请检查服务器连接！</string>

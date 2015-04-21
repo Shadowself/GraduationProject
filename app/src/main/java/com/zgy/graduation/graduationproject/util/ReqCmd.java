@@ -32,6 +32,8 @@ public class ReqCmd {
                                 TEMPERATURE ="temperature_goods",
                                 DAMPNESS = "dampness_goods",
                                 PESTKIND = "pestKind",
-                                PESTNUMBER = "pestNumber";
+                                PESTNUMBER = "pestNumber",
+                                TIME = "time",
+                                TESTRESULT = "testResult";
 
 }
