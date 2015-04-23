@@ -15,6 +15,8 @@ import com.zgy.graduation.graduationproject.util.StringUtils;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by Mr_zhang on 2015/4/19.
  */
@@ -101,12 +103,10 @@ public class getInfoFromTestActivity extends BaseActivity {
                                 // resData.getcode_()=0;
                                 case ReqCmd.RESULTCODE_SUCCESS:
                                     ViewUtil.showToast(mContext, resData.getMessage_());
-//                                    JSONArray jsonArray = JSON.parseArray(resData.getData());
-//                                    Intent intent = new Intent();
-//                                    intent.setClass(mContext, HomeActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
-
+                                    new SweetAlertDialog(mContext)
+                                            .setTitleText(getString(R.string.getStorehouseInfo))
+                                            .setContentText(resData.getMessage_())
+                                            .show();
                                     break;
                                 default:
                                     ViewUtil.showToast(mContext, resData.getMessage_());
