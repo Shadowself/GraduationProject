@@ -291,7 +291,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                             break;
                     }
                 } catch (Exception e) {
-
+                    Log.e(TAG,e.toString());
                 }
 
             }

@@ -2,6 +2,7 @@ package com.zgy.graduation.graduationproject.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
  * Created by zhangguoyu on 2015/4/9.
  */
 public class AddStorehouseActivity extends BaseActivity {
-
+    private static final String TAG = AddStorehouseActivity.class.getSimpleName();
     private EditText storeHouseName;
     private EditText goodsName;
     private Button confirm_button;
@@ -78,9 +79,6 @@ public class AddStorehouseActivity extends BaseActivity {
                                 // resData.getcode_()=0;
                                 case ReqCmd.RESULTCODE_SUCCESS:
                                     ViewUtil.showToast(mContext, resData.getMessage_());
-//                                    Intent intent = new Intent();
-//                                    intent.setClass(mContext, HomeActivity.class);
-//                                    startActivity(intent);
                                     finish();
 
                                     break;
@@ -89,7 +87,7 @@ public class AddStorehouseActivity extends BaseActivity {
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG, e.toString());
                         }
 
                     }

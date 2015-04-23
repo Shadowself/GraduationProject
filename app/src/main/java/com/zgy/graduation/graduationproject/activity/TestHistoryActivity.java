@@ -1,6 +1,7 @@
 package com.zgy.graduation.graduationproject.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -19,7 +20,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
  * Created by Mr_zhang on 2015/4/21.
  */
 public class TestHistoryActivity extends BaseActivity {
-
+    private static final String TAG = TestHistoryActivity.class.getSimpleName();
     private ListView historyList;
     private TestHistoryAdapter testHistoryAdapter;
 
@@ -70,7 +71,7 @@ public class TestHistoryActivity extends BaseActivity {
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG, e.toString());
                         }
 
                     }

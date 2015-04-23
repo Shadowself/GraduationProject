@@ -1,6 +1,7 @@
 package com.zgy.graduation.graduationproject.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * Created by Mr_zhang on 2015/4/19.
  */
 public class getInfoFromTestActivity extends BaseActivity {
-
+    private static final String TAG = getInfoFromTestActivity.class.getSimpleName();
     private EditText place;
     private EditText temperature_goods;
     private EditText dampness_goods;
@@ -113,7 +114,7 @@ public class getInfoFromTestActivity extends BaseActivity {
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG,e.toString());
                         }
 
                     }

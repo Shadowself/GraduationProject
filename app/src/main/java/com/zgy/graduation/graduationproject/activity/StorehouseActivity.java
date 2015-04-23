@@ -2,6 +2,7 @@ package com.zgy.graduation.graduationproject.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,7 +21,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * Created by zhangguoyu on 2015/4/2.
  */
 public class StorehouseActivity extends BaseActivity implements View.OnClickListener {
-
+    private static final String TAG = StorehouseActivity.class.getSimpleName();
     private Button postPicture;
     private Button deleteButton;
     private Button changeButton;
@@ -162,7 +163,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG, e.toString());
                         }
 
                     }

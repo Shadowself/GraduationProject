@@ -3,6 +3,7 @@ package com.zgy.graduation.graduationproject.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
  * Created by zhangguoyu on 2015/4/10.
  */
 public class ChangeStoreHouse extends BaseActivity{
+    private static final String TAG = ChangeStoreHouse.class.getSimpleName();
+
     private EditText storeHouseName;
     private EditText goodsName;
     private Button confirm_button;
@@ -96,7 +99,7 @@ public class ChangeStoreHouse extends BaseActivity{
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG, e.toString());
                         }
 
                     }

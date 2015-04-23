@@ -2,6 +2,7 @@ package com.zgy.graduation.graduationproject.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by Mr_zhang on 2015/3/31.
  */
 public class HomeActivity extends BaseActivity {
-
+    private static final String TAG = HomeActivity.class.getSimpleName();
     private GridView storehouse_gridView;
     private List<Storehouse> gridItems;
     private StorehouseAdapter storehouseAdapter;
@@ -137,7 +138,7 @@ public class HomeActivity extends BaseActivity {
                                     break;
                             }
                         } catch (Exception e) {
-
+                            Log.e(TAG, e.toString());
                         }
 
                     }
