@@ -73,6 +73,10 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         postPicture.setOnClickListener(this);
 
         pestText = (EditText)findViewById(R.id.pestText);
+
+        userPhoto = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
+                File.separator,
+                "temp");
     }
 
     @Override
@@ -228,9 +232,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
 
     public void keepPictureToSDCard(Bitmap photo) {
         FileOutputStream b = null;
-        userPhoto = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
-                File.separator,
-                "temp");
+
         File file = new File(userPhoto);
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();// 创建文件夹

@@ -48,5 +48,6 @@
     <string name="pestKind">害虫种类:</string>
     <string name="pestNumber">害虫数量:</string>
     <string name="make_sure">确认</string>
+    <string name="getInfo_button">获取硬件测量值</string>
 
 </resources>

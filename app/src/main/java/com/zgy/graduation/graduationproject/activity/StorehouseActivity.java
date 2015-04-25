@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
@@ -30,6 +31,9 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private JSONObject storehouseJson = new JSONObject();
     private SweetAlertDialog sweetAlertDialog;
 
+    private TextView storehouse_name_text;
+    private TextView storehouse_goods_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         comm_title.setText(R.string.storehouse_info);
         back_main.setVisibility(View.VISIBLE);
 
-        postPicture = (Button) findViewById(R.id.postPicture);
+        postPicture = (Button) findViewById(R.id.findPicture_from_server);
         postPicture.setOnClickListener(this);
 
         deleteButton = (Button) findViewById(R.id.deleteStore);
@@ -52,11 +56,15 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         getTestHistory = (Button) findViewById(R.id.getTestHistory);
         getTestHistory.setOnClickListener(this);
 
+        storehouse_name_text = (TextView) findViewById(R.id.storehouse_name_text);
+        storehouse_goods_text = (TextView) findViewById(R.id.storehouse_goods_text);
+
         Intent intent = getIntent();
         if (intent != null) {
             String jsonString = intent.getStringExtra("jsonStorehouse");
             storehouseJson = JSONObject.parseObject(jsonString);
-            comm_title.setText(storehouseJson.getString("storehouseName"));
+            storehouse_name_text.setText(storehouseJson.getString("storehouseName"));
+            storehouse_goods_text.setText(storehouseJson.getString("goods"));
         }
 
     }
@@ -64,7 +72,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.postPicture:
+            case R.id.findPicture_from_server:
                 Intent intent = new Intent();
                 intent.setClass(this, findPestKindActivity.class);
                 startActivity(intent);
