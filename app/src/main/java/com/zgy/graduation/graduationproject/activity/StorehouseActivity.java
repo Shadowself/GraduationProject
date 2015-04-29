@@ -76,6 +76,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 Intent intent = new Intent();
                 intent.setClass(this, findPestKindActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.alpha_in_activity, R.anim.alpha_out_activity);
                 break;
 
             case R.id.deleteStore:

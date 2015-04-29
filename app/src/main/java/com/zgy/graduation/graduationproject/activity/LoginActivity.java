@@ -89,7 +89,8 @@ public class LoginActivity extends ActionBarActivity {
                     Intent intent = new Intent();
                     intent.setClass(mContext, HomeActivity.class);
                     startActivity(intent);
-                    finish();
+                    overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.rotate_out_activity);
+//                    finish();
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }

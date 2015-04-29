@@ -3,6 +3,8 @@ package com.zgy.graduation.graduationproject.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -64,6 +66,10 @@ public class TestHistoryActivity extends BaseActivity {
                                     JSONArray jsonArray = JSON.parseArray(resData.getData());
                                     testHistoryAdapter.addDatas(jsonArray);
                                     historyList.setAdapter(testHistoryAdapter);
+                                    LayoutAnimationController lac = new LayoutAnimationController(AnimationUtils.loadAnimation(TestHistoryActivity.this,R.anim.anim_zoomin_activity));
+                                    lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
+                                    historyList.setLayoutAnimation(lac);
+                                    historyList.startLayoutAnimation();
 
                                     break;
                                 default:

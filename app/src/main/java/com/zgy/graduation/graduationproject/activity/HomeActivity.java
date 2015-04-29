@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -42,12 +44,19 @@ public class HomeActivity extends BaseActivity {
 
         storehouse_gridView = (GridView) findViewById(R.id.storehouse_gridView);
         addStorehouse = (Button) findViewById(R.id.addStorehouse);
+//        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f,1.0f);
+//        alphaAnimation.setDuration(100);
+//        alphaAnimation.setRepeatCount(10);
+//        alphaAnimation.setRepeatMode(Animation.REVERSE);
+//        addStorehouse.startAnimation(alphaAnimation);
+
         addStorehouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(HomeActivity.this,AddStorehouseActivity.class);
+                intent.setClass(HomeActivity.this, AddStorehouseActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.anim_zoomout_activity);
             }
         });
 
@@ -63,6 +72,11 @@ public class HomeActivity extends BaseActivity {
         storehouseAdapter = new StorehouseAdapter(this);
         storehouseAdapter.setList(gridItems);
         storehouse_gridView.setAdapter(storehouseAdapter);
+        LayoutAnimationController lac = new LayoutAnimationController(AnimationUtils.loadAnimation(HomeActivity.this, R.anim.anim_zoomin_activity));
+        lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        storehouse_gridView.setLayoutAnimation(lac);
+        storehouse_gridView.startLayoutAnimation();
+
         storehouse_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,9 +89,9 @@ public class HomeActivity extends BaseActivity {
                 json.put("goods",storehouse.getGoods());
                 Intent intent = new Intent();
                 intent.setClass(HomeActivity.this, StorehouseActivity.class);
-                intent.putExtra("jsonStorehouse",json.toJSONString());
+                intent.putExtra("jsonStorehouse", json.toJSONString());
                 startActivity(intent);
-
+                overridePendingTransition(R.anim.rotate_in_activity, R.anim.rotate_out_activity);
             }
         });
 
