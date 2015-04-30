@@ -37,6 +37,7 @@ public class TestHistoryActivity extends BaseActivity {
         historyList = (ListView) findViewById(R.id.historyList);
         testHistoryAdapter = new TestHistoryAdapter(this);
         historyList.setAdapter(testHistoryAdapter);
+        historyList.setEmptyView(findViewById(R.id.warning_text));
         getJsonData();
     }
 
@@ -70,7 +71,6 @@ public class TestHistoryActivity extends BaseActivity {
                                     lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
                                     historyList.setLayoutAnimation(lac);
                                     historyList.startLayoutAnimation();
-
                                     break;
                                 default:
                                     ViewUtil.showToast(mContext, resData.getMessage_());

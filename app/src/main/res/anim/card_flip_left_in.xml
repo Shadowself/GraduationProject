@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="together">
     <!--旋转之前，立刻设置透明度alpha为0-->
     <objectAnimator
         android:valueFrom="1.0"

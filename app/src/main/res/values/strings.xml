@@ -50,4 +50,6 @@
     <string name="make_sure">确认</string>
     <string name="getInfo_button">获取硬件测量值</string>
 
+    <string name="warning_text">暂无数据！</string>
+
 </resources>
