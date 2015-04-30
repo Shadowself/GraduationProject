@@ -20,6 +20,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Mr_zhang on 2015/4/19.
+ * description: get information such as temperature_goods and so on from Equipment;
  */
 public class getInfoFromTestActivity extends BaseActivity {
     private static final String TAG = getInfoFromTestActivity.class.getSimpleName();
@@ -65,9 +66,17 @@ public class getInfoFromTestActivity extends BaseActivity {
 
     }
 
+    /**
+     * description: check Text not empty
+     * @param placeText
+     * @param temperatureText
+     * @param dampnessText
+     * @param pestKindText
+     * @param pestNumberText
+     * @return
+     */
     public boolean checkText(String placeText,String temperatureText,String dampnessText,String pestKindText,String pestNumberText){
         boolean flag= false;
-
         if(StringUtils.isNotBlank(placeText) && StringUtils.isNotBlank(temperatureText) && StringUtils.isNotBlank(dampnessText)
                 && StringUtils.isNotBlank(pestKindText) && StringUtils.isNotBlank(pestNumberText)){
             flag = true;
@@ -85,9 +94,7 @@ public class getInfoFromTestActivity extends BaseActivity {
         jsonString.put(ReqCmd.DAMPNESS,dampnessText);
         jsonString.put(ReqCmd.PESTKIND,pestKindText);
         jsonString.put(ReqCmd.PESTNUMBER,pestNumberText);
-
         SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.waiting), false);
-
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
                     @Override
@@ -97,7 +104,6 @@ public class getInfoFromTestActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(String result) {
-
                         try {
                             ResData resData = JSONObject.parseObject(result, ResData.class);
                             switch (resData.getCode_()) {
@@ -116,7 +122,6 @@ public class getInfoFromTestActivity extends BaseActivity {
                         } catch (Exception e) {
                             Log.e(TAG,e.toString());
                         }
-
                     }
 
                     @Override
@@ -126,11 +131,8 @@ public class getInfoFromTestActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
-
-
                 }
         );
     }

@@ -49,12 +49,16 @@ public class AddStorehouseActivity extends BaseActivity {
                     AddStoreHouse(storeString,goodsString);
                 }else{
                     ViewUtil.showToast(mContext,"请先完善信息。。。");
-
                 }
             }
         });
     }
 
+    /**
+     * description:
+     * @param storeString
+     * @param goodsString
+     */
     public void AddStoreHouse(String storeString,String goodsString) {
         String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();

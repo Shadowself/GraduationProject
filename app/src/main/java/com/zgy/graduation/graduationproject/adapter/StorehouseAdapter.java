@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by Mr_zhang on 2015/3/31.
+ * description: adapter for storehouse
  */
 public class StorehouseAdapter extends BaseAdapter {
 
@@ -72,12 +73,6 @@ public class StorehouseAdapter extends BaseAdapter {
                     mContext.getResources().getDrawable(info.getStorehouseImgResId()), null, null);
             /*holder.tvAppName.setCompoundDrawablesWithIntrinsicBounds(null,
 					ThumbnailUtils.zoomDrawable(context.getResources().getDrawable(info.getMenuImgResId()), menuWidth, menuWidth), null, null);*/
-
-//			if(info.getMsgCount() > 0){
-//				holder.tvMsgCount.setText(String.valueOf(info.getMsgCount()));
-//				holder.tvMsgCount.setVisibility(View.VISIBLE);
-//			}else{
-//			}
         }
         return convertView;
     }

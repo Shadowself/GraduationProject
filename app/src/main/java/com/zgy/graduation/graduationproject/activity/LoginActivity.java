@@ -20,8 +20,9 @@ import com.zgy.graduation.graduationproject.util.PreferencesUtil;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
-
-
+/**
+ * description:login
+ */
 public class LoginActivity extends ActionBarActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     protected Context mContext = LoginActivity.this;
@@ -55,9 +56,7 @@ public class LoginActivity extends ActionBarActivity {
         } else {
             rememberPswd.setChecked(false);
             autoLogin.setChecked(false);
-
         }
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +89,7 @@ public class LoginActivity extends ActionBarActivity {
                     intent.setClass(mContext, HomeActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.rotate_out_activity);
-//                    finish();
+                    finish();
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }
@@ -117,7 +116,6 @@ public class LoginActivity extends ActionBarActivity {
                 if (isChecked) {
                     rememberPswd.setChecked(true);
                 }
-
             }
         });
 
@@ -141,7 +139,6 @@ public class LoginActivity extends ActionBarActivity {
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);
-//        showProgressDialog(getString(R.string.logining), false);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.logining),false);
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
@@ -172,7 +169,6 @@ public class LoginActivity extends ActionBarActivity {
                         } catch (Exception e) {
                             Log.e(TAG, e.toString());
                         }
-
                     }
 
                     @Override
@@ -182,10 +178,8 @@ public class LoginActivity extends ActionBarActivity {
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
-
                 }
         );
 

@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * Created by Mr_zhang on 2015/3/31.
+ * description: storehouse list
  */
 public class HomeActivity extends BaseActivity {
     private static final String TAG = HomeActivity.class.getSimpleName();
@@ -70,7 +71,6 @@ public class HomeActivity extends BaseActivity {
 
         gridItems = new ArrayList<Storehouse>();
 
-
         for (int i = 0; i < 10; i++) {
             Storehouse gridMenu = new Storehouse();
             gridMenu.setStorehouseTitleResId(100 * (i + 1) + i + 1 + "");
@@ -88,7 +88,6 @@ public class HomeActivity extends BaseActivity {
         storehouse_gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Storehouse storehouse = gridItems.get(position);
                 JSONObject json = new JSONObject();
                 json.put("id",storehouse.getId());
@@ -102,9 +101,6 @@ public class HomeActivity extends BaseActivity {
                 overridePendingTransition(R.anim.rotate_in_activity, R.anim.rotate_out_activity);
             }
         });
-
-
-
     }
 
     @Override
@@ -117,7 +113,6 @@ public class HomeActivity extends BaseActivity {
         String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.GET_STOREHOUSE_FLAG);
-//        showProgressDialog(getString(R.string.waiting), false);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting),false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -162,7 +157,6 @@ public class HomeActivity extends BaseActivity {
                         } catch (Exception e) {
                             Log.e(TAG, e.toString());
                         }
-
                     }
 
                     @Override
@@ -172,11 +166,8 @@ public class HomeActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
-
-
                 }
         );
     }

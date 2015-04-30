@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * Created by Mr_zhang on 2015/4/26.
+ * description:commonAdapter for JsonArray
  */
 public abstract class CommonAdapter extends BaseAdapter {
     protected Context mContext;
@@ -22,7 +23,6 @@ public abstract class CommonAdapter extends BaseAdapter {
         this.mDatas = new JSONArray();
         mInflater = LayoutInflater.from(context);
     };
-
 
     @Override
     public int getCount() {

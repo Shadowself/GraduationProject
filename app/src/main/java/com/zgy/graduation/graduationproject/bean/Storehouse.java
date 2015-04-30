@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by Mr_zhang on 2015/3/31.
- * 仓库
+ * description:仓库
  */
 public class Storehouse implements Serializable {
 

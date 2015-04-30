@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.Serializable;
 
 /**
- * result from web
+ * description:result from web
  */
 public class ResData implements Serializable {
     private static final long serialVersionUID = -1894466547675744738L;

@@ -20,6 +20,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by zhangguoyu on 2015/4/2.
+ * description:the optional for storehouse
  */
 public class StorehouseActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = StorehouseActivity.class.getSimpleName();
@@ -30,7 +31,6 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private Button getTestHistory;
     private JSONObject storehouseJson = new JSONObject();
     private SweetAlertDialog sweetAlertDialog;
-
     private TextView storehouse_name_text;
     private TextView storehouse_goods_text;
 
@@ -59,6 +59,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         storehouse_name_text = (TextView) findViewById(R.id.storehouse_name_text);
         storehouse_goods_text = (TextView) findViewById(R.id.storehouse_goods_text);
 
+        //get storehouse information from before activity
         Intent intent = getIntent();
         if (intent != null) {
             String jsonString = intent.getStringExtra("jsonStorehouse");
@@ -80,7 +81,6 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.deleteStore:
-
                 sweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
                 sweetAlertDialog.setTitleText(mContext.getString(R.string.delete_true))
 //                .setContentText("Won't be able to recover this file!")
@@ -105,7 +105,6 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.changeStore:
-
                 Intent changeIntent = new Intent();
                 changeIntent.setClass(this, ChangeStoreHouse.class);
                 changeIntent.putExtra("jsonStorehouse",storehouseJson.toJSONString());
@@ -131,14 +130,10 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.DELETE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));
-//        showProgressDialog(getString(R.string.waiting), false);
-//        SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
-
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
         httpAsyncTaskManager.requestStream(url, jsonString.toJSONString(), new StringTaskHandler() {
                     @Override
                     public void onNetError() {
-//                        ViewUtil.showToast(mContext, getString(R.string.network_error));
                         sweetAlertDialog.dismiss();
                         SweetAlertDialogUtils.showErrorDialog(mContext,getString(R.string.network_error));
                     }

@@ -20,6 +20,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
  * Created by Mr_zhang on 2015/4/21.
+ * description : the history for test information
  */
 public class TestHistoryActivity extends BaseActivity {
     private static final String TAG = TestHistoryActivity.class.getSimpleName();
@@ -44,7 +45,6 @@ public class TestHistoryActivity extends BaseActivity {
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID,preferencesUtil.getString(ReqCmd.STOREHOUSEID));
-//        showProgressDialog(getString(R.string.waiting), false);
         SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -89,11 +89,8 @@ public class TestHistoryActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
-
-
                 }
         );
     }

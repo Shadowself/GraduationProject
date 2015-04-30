@@ -13,6 +13,7 @@ import com.zgy.graduation.graduationproject.util.ReqCmd;
 
 /**
  * Created by Mr_zhang on 2015/4/21.
+ * description: adapter for testHistory
  */
 public class TestHistoryAdapter extends CommonAdapter {
 
@@ -25,6 +26,7 @@ public class TestHistoryAdapter extends CommonAdapter {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
+        //common viewHolder
         ViewHolder viewHolder = ViewHolder.get(mContext, view, parent, R.layout.listitem,position);
 
         if(mDatas.size() > 0 && position < mDatas.size()){
@@ -41,8 +43,6 @@ public class TestHistoryAdapter extends CommonAdapter {
 
             }
         }
-
-
         return viewHolder.getConvertView();
     }
 

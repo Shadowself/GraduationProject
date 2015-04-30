@@ -54,8 +54,6 @@ public class OkHttpUtil {
 
             @Override
             public void onResponse(Response arg0) throws IOException {
-
-
             }
 
             @Override

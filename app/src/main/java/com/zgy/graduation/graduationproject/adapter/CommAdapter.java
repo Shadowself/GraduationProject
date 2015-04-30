@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by Mr_zhang on 2015/4/26.
+ * description : commonAdapter for T
  */
 public abstract class CommAdapter<T> extends BaseAdapter {
 
@@ -21,7 +22,6 @@ public abstract class CommAdapter<T> extends BaseAdapter {
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
     };
-
 
     @Override
     public int getCount() {

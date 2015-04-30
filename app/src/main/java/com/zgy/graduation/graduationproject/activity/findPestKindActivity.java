@@ -30,7 +30,6 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +37,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by zhangguoyu on 2015/4/7.
+ * description: post picture and get pest result from server
  */
 public class findPestKindActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -47,14 +47,9 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
     private Button postPicture;
     private EditText pestText;
 
+    // temp file
     private static final String IMAGE_FILE_LOCATION = "file:///sdcard/tempPicture.jpg";// temp
-    // file
-    Uri imageUri = Uri.parse(IMAGE_FILE_LOCATION);// The Uri to store the big
-    // bitmap
-    public static String picturePath = String.format("%sphoto%s%s.jpg", DeviceUtil.getSDcardDir() + DeviceUtil.DEFAULTBASEPATH,
-            File.separator,
-            "temp");
-
+    private Uri imageUri = Uri.parse(IMAGE_FILE_LOCATION);// The Uri to store the big
 
     private String userPhoto;
 
@@ -97,41 +92,6 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
-    //保存到sd卡
-    public static void savePhotoToSDCard(String path, String photoName,
-        Bitmap photoBitmap) {
-        if (android.os.Environment.getExternalStorageState().equals(
-                android.os.Environment.MEDIA_MOUNTED)) {
-            File dir = new File(path);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            File photoFile = new File(path, photoName); // 在指定路径下创建文件
-            FileOutputStream fileOutputStream = null;
-            try {
-                fileOutputStream = new FileOutputStream(photoFile);
-                if (photoBitmap != null) {
-                    if (photoBitmap.compress(Bitmap.CompressFormat.PNG, 100,
-                            fileOutputStream)) {
-                        fileOutputStream.flush();
-                    }
-                }
-            } catch (FileNotFoundException e) {
-                photoFile.delete();
-                e.printStackTrace();
-            } catch (IOException e) {
-                photoFile.delete();
-                e.printStackTrace();
-            } finally {
-                try {
-                    fileOutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
     //对返回的结果进行处理
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -140,11 +100,8 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-
                 case 0:
-
                     if (data != null) {
-
                         Bitmap bp = data.getParcelableExtra("data");
                         if (null == bp) {
                             ContentResolver resolver = getContentResolver();
@@ -154,7 +111,6 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                         }
                         pestPicture.setImageBitmap(bp);
                         keepPictureToSDCard(bp);
-//                        savePhotoToSDCard(userPhoto, "image.jpg", bp);
                     } else {
                         Log.e(TAG, "CHOOSE_SMALL_PICTURE: data = " + data);
                     }
@@ -163,7 +119,6 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                     if (imageUri != null) {
                         Bitmap bmp = decodeUriAsBitmap(imageUri);
                         pestPicture.setImageBitmap(bmp);
-//                        savePhotoToSDCard(userPhoto, "image.jpg", bmp);
                         keepPictureToSDCard(bmp);
                     } else {
                         Log.e(TAG, "CROP_SMALL_PICTURE: data = " + data);
@@ -190,6 +145,9 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         return bitmap;
     }
 
+    /**
+     * description : choose way to pick picture
+     */
     public void createDialog() {
         new AlertDialog.Builder(mContext)
                 .setItems(items, new DialogInterface.OnClickListener() {
@@ -207,7 +165,6 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                                 Intent intentFromCapture = new Intent(
                                         MediaStore.ACTION_IMAGE_CAPTURE);
                                 // 判断存储卡是否可以用，可用进行存储
-
                                 intentFromCapture.putExtra(
                                         MediaStore.EXTRA_OUTPUT,
                                         Uri.fromFile(new File(Environment
@@ -230,6 +187,10 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                 }).show();
     }
 
+    /**
+     * description:keep picture to SDCard
+     * @param photo
+     */
     public void keepPictureToSDCard(Bitmap photo) {
         FileOutputStream b = null;
 
@@ -240,16 +201,13 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
         try {
             b = new FileOutputStream(new File(userPhoto));
             photo.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     public void postPictureToServer(String describe){
         String url = String.format(getString(R.string.postPest_url),getString(R.string.common_ip));
-
         List<String> pestInfo = new ArrayList<String>();
         pestInfo.add(preferencesUtil.getString(ReqCmd.STOREHOUSEID));
         pestInfo.add(describe);
@@ -279,12 +237,10 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
                             if(file.exists()){
                                 file.delete();
                             }
-
                             new SweetAlertDialog(mContext)
                                     .setTitleText(getString(R.string.pestInfo))
                                     .setContentText(resData.getData())
                                     .show();
-
 //                            finish();
 
                             break;

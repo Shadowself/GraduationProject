@@ -20,6 +20,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
  * Created by zhangguoyu on 2015/4/10.
+ * description: change storehouseInfo
  */
 public class ChangeStoreHouse extends BaseActivity{
     private static final String TAG = ChangeStoreHouse.class.getSimpleName();
@@ -54,6 +55,7 @@ public class ChangeStoreHouse extends BaseActivity{
                 }
             }
         });
+        //get information from before action
         Intent intent = getIntent();
         if (intent != null) {
             String jsonString = intent.getStringExtra("jsonStorehouse");
@@ -69,7 +71,6 @@ public class ChangeStoreHouse extends BaseActivity{
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
         jsonString.put(ReqCmd.GOODS, goodsString);
         jsonString.put(ReqCmd.STOREHOUSEID,storehouseJson.getString("storehouseName"));
-//        showProgressDialog(getString(R.string.waiting), false);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -111,7 +112,6 @@ public class ChangeStoreHouse extends BaseActivity{
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
 

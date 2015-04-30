@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by Mr_zhang on 2015/4/26.
+ * description : common ViewHolder for adapter
  */
 public class ViewHolder {
 
@@ -22,6 +23,7 @@ public class ViewHolder {
         mConvertView.setTag(this);
     }
 
+    //get ViewHolder
     public static ViewHolder get(Context context,View convertView,ViewGroup parent,int layoutId,int position){
         if(convertView == null){
             return new ViewHolder(context,parent,layoutId,position);
@@ -33,6 +35,7 @@ public class ViewHolder {
     }
 
     /**
+     * description:common getView for TextView/EditText/Button and so on
      * @param viewId
      * @param <T>
      * @return
