@@ -137,7 +137,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void Login(String username, String password) {
-        String url = getString(R.string.login_url);
+        String url = String.format(getString(R.string.login_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);

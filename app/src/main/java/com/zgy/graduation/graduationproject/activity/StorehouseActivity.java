@@ -127,7 +127,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     }
 
     public void deleteStore() {
-        String url = getString(R.string.storehouse_url);
+        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.DELETE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));

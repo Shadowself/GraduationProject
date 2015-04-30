@@ -248,7 +248,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void postPictureToServer(String describe){
-        String url = getString(R.string.postPest_url);
+        String url = String.format(getString(R.string.postPest_url),getString(R.string.common_ip));
 
         List<String> pestInfo = new ArrayList<String>();
         pestInfo.add(preferencesUtil.getString(ReqCmd.STOREHOUSEID));

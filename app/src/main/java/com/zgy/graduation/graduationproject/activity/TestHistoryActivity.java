@@ -40,7 +40,7 @@ public class TestHistoryActivity extends BaseActivity {
     }
 
     public void getJsonData(){
-        String url = getString(R.string.testInfo_url);
+        String url = String.format(getString(R.string.testInfo_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID,preferencesUtil.getString(ReqCmd.STOREHOUSEID));

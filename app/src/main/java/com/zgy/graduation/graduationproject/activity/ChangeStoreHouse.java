@@ -63,7 +63,7 @@ public class ChangeStoreHouse extends BaseActivity{
     }
 
     public void ChangeStore(String storeString,String goodsString) {
-        String url = getString(R.string.storehouse_url);
+        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG,ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);

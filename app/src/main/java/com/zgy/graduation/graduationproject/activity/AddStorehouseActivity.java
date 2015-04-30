@@ -19,6 +19,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 
 /**
  * Created by zhangguoyu on 2015/4/9.
+ * description:add Storehouse
  */
 public class AddStorehouseActivity extends BaseActivity {
     private static final String TAG = AddStorehouseActivity.class.getSimpleName();
@@ -55,12 +56,11 @@ public class AddStorehouseActivity extends BaseActivity {
     }
 
     public void AddStoreHouse(String storeString,String goodsString) {
-        String url = getString(R.string.storehouse_url);
+        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG,ReqCmd.ADD_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);
         jsonString.put(ReqCmd.GOODS, goodsString);
-//        showProgressDialog(getString(R.string.waiting), false);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -99,7 +99,6 @@ public class AddStorehouseActivity extends BaseActivity {
 
                     @Override
                     public void onFinish() {
-//                        closeProgressDialog();
                         SweetAlertDialogUtils.closeProgressDialog();
                     }
 

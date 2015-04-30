@@ -19,6 +19,7 @@ import java.util.Stack;
 
 /**
  * Created by Mr_zhang on 2015/3/31.
+ * description:baseActivity for common option and end App
  */
 public class BaseActivity extends Activity{
 
@@ -80,11 +81,6 @@ public class BaseActivity extends Activity{
     /**
      * 按下返回按钮的事件，可以提示：再按一次退出程序。</p>
      * 在需要的窗口中覆盖 <code>onKeyDown</code> 即可，并在代码中直接调用该方法。
-     * <pre>
-     * @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event){
-    return this.onKeyDown0(keyCode, event);
-    }
      * </pre>
      * @param keyCode
      * @param event

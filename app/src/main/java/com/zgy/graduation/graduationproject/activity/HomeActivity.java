@@ -49,6 +49,14 @@ public class HomeActivity extends BaseActivity {
 //        alphaAnimation.setRepeatCount(10);
 //        alphaAnimation.setRepeatMode(Animation.REVERSE);
 //        addStorehouse.startAnimation(alphaAnimation);
+//        float curTranslationX = addStorehouse.getTranslationX();
+//        ObjectAnimator animator = ObjectAnimator.ofFloat(addStorehouse, "translationX", -1000f, curTranslationX);
+//        animator.setDuration(3000);
+//        animator.start();
+
+//        Animator animator = AnimatorInflater.loadAnimator(this);
+//        animator.setTarget(addStorehouse);
+//        animator.start();
 
         addStorehouse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +114,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void getAllStoreHouse(){
-        String url = getString(R.string.storehouse_url);
+        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.GET_STOREHOUSE_FLAG);
 //        showProgressDialog(getString(R.string.waiting), false);

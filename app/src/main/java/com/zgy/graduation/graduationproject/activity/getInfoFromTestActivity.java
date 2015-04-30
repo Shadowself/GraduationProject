@@ -76,7 +76,7 @@ public class getInfoFromTestActivity extends BaseActivity {
     }
 
     public void getTestInfo(String placeText,String temperatureText,String dampnessText,String pestKindText,String pestNumberText){
-        String url = getString(R.string.testInfo_url);
+        String url = String.format(getString(R.string.testInfo_url),getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.ADD_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID,preferencesUtil.getString(ReqCmd.STOREHOUSEID));
