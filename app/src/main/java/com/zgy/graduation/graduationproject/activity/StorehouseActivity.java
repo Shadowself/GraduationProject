@@ -107,20 +107,23 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
             case R.id.changeStore:
                 Intent changeIntent = new Intent();
                 changeIntent.setClass(this, ChangeStoreHouse.class);
-                changeIntent.putExtra("jsonStorehouse",storehouseJson.toJSONString());
+                changeIntent.putExtra("jsonStorehouse", storehouseJson.toJSONString());
                 startActivity(changeIntent);
+                overridePendingTransition(R.anim.translate_in_activity, R.anim.anim_zoomout_activity);
                 break;
             case R.id.getInfoFromTest:
                 Intent intent1 = new Intent();
                 intent1.setClass(this, getInfoFromTestActivity.class);
 //                intent1.putExtra("jsonStorehouse",storehouseJson.toJSONString());
                 startActivity(intent1);
+                overridePendingTransition(R.anim.alpha_in_activity, R.anim.anim_zoomout_activity);
                 break;
 
             case R.id.getTestHistory:
                 Intent intent2 = new Intent();
                 intent2.setClass(this, TestHistoryActivity.class);
                 startActivity(intent2);
+                overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.alpha_out_activity);
                 break;
         }
     }
