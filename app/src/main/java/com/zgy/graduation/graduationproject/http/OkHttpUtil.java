@@ -24,9 +24,9 @@ import java.util.concurrent.TimeUnit;
 public class OkHttpUtil {
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     static{
-        mOkHttpClient.setConnectTimeout(30, TimeUnit.SECONDS);
-//        mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
-//        mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
+        mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
+        mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
+        mOkHttpClient.setReadTimeout(10, TimeUnit.SECONDS);
     }
     /**
      * 该步会开启异步线程。
