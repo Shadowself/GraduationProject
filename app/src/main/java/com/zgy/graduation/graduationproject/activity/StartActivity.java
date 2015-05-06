@@ -9,6 +9,7 @@ import com.zgy.graduation.graduationproject.view.LoadingView;
 
 /**
  * Created by Mr_zhang on 2015/5/6.
+ * description:启动页、、、
  */
 public class StartActivity extends Activity {
     private LoadingView loadingView;
