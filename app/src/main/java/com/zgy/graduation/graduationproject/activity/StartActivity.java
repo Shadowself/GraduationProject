@@ -1,0 +1,64 @@
+package com.zgy.graduation.graduationproject.activity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.view.LoadingView;
+
+/**
+ * Created by Mr_zhang on 2015/5/6.
+ */
+public class StartActivity extends Activity {
+    private LoadingView loadingView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start);
+        loadingView = (LoadingView) findViewById(R.id.main_imageview);
+        initLoadingImages();
+        new Thread(){
+            @Override
+            public void run(){
+                loadingView.startAnim();
+            }
+        }.start();
+
+        Thread T = new newthread();
+        T.start();
+
+    }
+
+    class newthread extends Thread{
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(2500);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Intent intent = new Intent();
+            intent.setClass(StartActivity.this, LoginActivity.class);
+            startActivity(intent);
+
+            finish();
+        }
+    }
+
+    private void initLoadingImages(){
+        int[] imageIds = new int[6];
+        imageIds[0] = R.drawable.loader_frame_1;
+        imageIds[1] = R.drawable.loader_frame_2;
+        imageIds[2] = R.drawable.loader_frame_3;
+        imageIds[3] = R.drawable.loader_frame_4;
+        imageIds[4] = R.drawable.loader_frame_5;
+        imageIds[5] = R.drawable.loader_frame_6;
+
+        loadingView.setImageIds(imageIds);
+    }
+}
