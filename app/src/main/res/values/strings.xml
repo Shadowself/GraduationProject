@@ -44,8 +44,8 @@
     <string name="testInfo_empty">为保证分析数据的准确性，请完善信息！</string>
 
     <string name="place">位置:</string>
-    <string name="temperature_goods">温度:</string>
-    <string name="dampness_goods">湿度:</string>
+    <string name="temperature_goods">温度(℃):</string>
+    <string name="dampness_goods">湿度(％rh):</string>
     <string name="pestKind">害虫种类:</string>
     <string name="pestNumber">害虫数量:</string>
     <string name="make_sure">确认</string>

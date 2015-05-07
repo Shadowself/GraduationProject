@@ -67,7 +67,7 @@ public class TestHistoryActivity extends BaseActivity {
                                     JSONArray jsonArray = JSON.parseArray(resData.getData());
                                     testHistoryAdapter.addDatas(jsonArray);
                                     historyList.setAdapter(testHistoryAdapter);
-                                    LayoutAnimationController lac = new LayoutAnimationController(AnimationUtils.loadAnimation(TestHistoryActivity.this,R.anim.anim_zoomin_activity));
+                                    LayoutAnimationController lac = new LayoutAnimationController(AnimationUtils.loadAnimation(TestHistoryActivity.this,R.anim.translate_list_layout));
                                     lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
                                     historyList.setLayoutAnimation(lac);
                                     historyList.startLayoutAnimation();

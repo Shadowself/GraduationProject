@@ -3,6 +3,7 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/HomeActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/LoginActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/StartActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/StorehouseActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/TestHistoryActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/zgy/graduation/graduationproject/activity/TestHistoryAdapter.java" charset="UTF-8" />

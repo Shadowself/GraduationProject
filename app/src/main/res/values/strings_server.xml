@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="common_ip">192.168.0.104:8080</string>
+    <string name="common_ip">10.0.2.13:8080</string>
     <string name="login_url">http://%1$s/Graduation/LoginAction</string>
     <string name="storehouse_url">http://%1$s/Graduation/StoreHouseAction</string>
     <string name="postPest_url">http://%1$s/Graduation/pestAction</string>

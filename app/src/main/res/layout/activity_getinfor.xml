@@ -64,7 +64,7 @@
             android:ems="10"
             android:lines="1"
             android:maxLength="16"
-            android:paddingLeft="57sp" />
+            android:paddingLeft="90sp" />
 
         <TextView
             android:id="@+id/text2"
@@ -97,7 +97,7 @@
             android:ems="10"
             android:lines="1"
             android:maxLength="16"
-            android:paddingLeft="57sp" />
+            android:paddingLeft="105sp" />
 
         <TextView
             android:id="@+id/text3"
@@ -111,7 +111,7 @@
             android:text="@string/dampness_goods"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_20" />
-    </RelativeLayout>
+</RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
