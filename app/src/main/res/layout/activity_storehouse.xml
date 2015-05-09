@@ -7,6 +7,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:background="@drawable/round_layout_bg"
         android:padding="@dimen/common_margin_10">
         <TextView
             android:id="@id/text1"
@@ -25,6 +29,7 @@
             android:id="@id/text2"
             style="@style/comm_TextView"
             android:layout_below="@+id/text1"
+            android:layout_marginTop="@dimen/common_margin_10"
             android:text="@string/new_storehouse_goods"
             android:textSize="@dimen/text_size_20"
             />
@@ -33,83 +38,65 @@
             style="@style/comm_TextView"
             android:textSize="@dimen/text_size_20"
             android:layout_below="@+id/text1"
+            android:layout_marginTop="@dimen/common_margin_10"
             android:layout_toRightOf="@+id/text2"
             />
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/common_margin_10"
-        android:layout_marginTop="@dimen/common_margin_10">
 
-        <Button
-            android:id="@+id/getInfoFromTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            style="@style/Button"
-            android:layout_marginLeft="@dimen/common_margin_10"
-            android:text="@string/getStorehouseInfo"
-            android:textSize="@dimen/text_size_20"
-            />
+    <Button
+        android:id="@+id/getInfoFromTest"
+        android:layout_centerVertical="true"
+        style="@style/storehouse_button"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:text="@string/getStorehouseInfo"
+        android:textSize="@dimen/text_size_20"
+        />
 
-        <Button
-            android:id="@+id/getTestHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            style="@style/Button"
-            android:layout_marginTop="@dimen/common_margin_10"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/common_margin_10"
-            android:text="@string/getTestInfoHistory"
-            android:textSize="@dimen/text_size_20"
-            />
+    <Button
+        android:id="@+id/getTestHistory"
+        android:layout_centerVertical="true"
+        style="@style/storehouse_button"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:text="@string/getTestInfoHistory"
+        android:textSize="@dimen/text_size_20"
+        />
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/findPicture_from_server"
+        style="@style/storehouse_button"
+        android:text="查询害虫"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:textSize="@dimen/text_size_20"
+        />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/common_margin_10">
+    <Button
+        android:id="@+id/deleteStore"
+        style="@style/storehouse_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:text="@string/deleteStoreHouse"
+        android:textSize="@dimen/text_size_20"
+        />
 
-        <Button
-            android:id="@+id/findPicture_from_server"
-            style="@style/Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查询害虫"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/common_margin_10"
-            android:textSize="@dimen/text_size_20"
-            />
-
-        <Button
-            android:id="@+id/deleteStore"
-            style="@style/Button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/common_margin_10"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/deleteStoreHouse"
-            android:textSize="@dimen/text_size_20"
-            />
-
-        <Button
-            android:id="@+id/changeStore"
-            style="@style/Button"
-            android:layout_marginTop="@dimen/common_margin_10"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/common_margin_10"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/changeStoreHouse"
-            android:textSize="@dimen/text_size_20"
-            />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/changeStore"
+        style="@style/storehouse_button"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:text="@string/changeStoreHouse"
+        android:textSize="@dimen/text_size_20"
+        />
 
 </LinearLayout>

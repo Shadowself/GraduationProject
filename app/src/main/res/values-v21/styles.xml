@@ -6,29 +6,4 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Button">
-        <item name="android:layout_width">@dimen/common_size_120</item>
-        <item name="android:layout_height">@dimen/common_size_48</item>
-        <item name="android:background">@drawable/button_background</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_size_24</item>
-        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="comm_EditText">
-        <item name="android:textColor">@color/blue</item>
-        <item name="android:background">@drawable/bg_input_all</item>
-        <item name="android:textColorHint">#99CCFF</item>
-        <item name="android:textSize">@dimen/text_size_20</item>
-        <item name="android:saveEnabled">true</item>
-    </style>
-
-    <style name = "comm_TextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/blue</item>
-        <item name="android:textSize">@dimen/text_size_15</item>
-    </style>
-
 </resources>
