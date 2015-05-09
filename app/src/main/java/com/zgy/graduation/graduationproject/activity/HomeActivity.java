@@ -71,12 +71,7 @@ public class HomeActivity extends BaseActivity {
 
         gridItems = new ArrayList<Storehouse>();
 
-        for (int i = 0; i < 10; i++) {
-            Storehouse gridMenu = new Storehouse();
-            gridMenu.setStorehouseTitleResId(100 * (i + 1) + i + 1 + "");
-            gridMenu.setStorehouseImgResId(R.mipmap.storehouse);
-            gridItems.add(gridMenu);
-        }
+
         storehouseAdapter = new StorehouseAdapter(this);
         storehouseAdapter.setList(gridItems);
         storehouse_gridView.setAdapter(storehouseAdapter);
@@ -162,6 +157,15 @@ public class HomeActivity extends BaseActivity {
                     @Override
                     public void onFail() {
                         ViewUtil.showToast(mContext, getString(R.string.server_error));
+                        gridItems.clear();
+                        for (int i = 0; i < 10; i++) {
+                            Storehouse gridMenu = new Storehouse();
+                            gridMenu.setStorehouseTitleResId(100 * (i + 1) + i + 1 + "");
+                            gridMenu.setStorehouseImgResId(R.mipmap.storehouse);
+                            gridItems.add(gridMenu);
+                        }
+                        storehouseAdapter.setList(gridItems);
+                        storehouseAdapter.notifyDataSetChanged();
                     }
 
                     @Override
