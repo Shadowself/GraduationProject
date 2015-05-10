@@ -93,7 +93,7 @@ public class HomeActivity extends BaseActivity {
                 intent.setClass(HomeActivity.this, StorehouseActivity.class);
                 intent.putExtra("jsonStorehouse", json.toJSONString());
                 startActivity(intent);
-                overridePendingTransition(R.anim.rotate_in_activity, R.anim.rotate_out_activity);
+                overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.anim_zoomout_activity);
             }
         });
     }
