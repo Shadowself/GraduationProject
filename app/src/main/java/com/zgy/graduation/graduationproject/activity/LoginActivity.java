@@ -1,9 +1,9 @@
 package com.zgy.graduation.graduationproject.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +23,7 @@ import com.zgy.graduation.graduationproject.util.ViewUtil;
 /**
  * description:login
  */
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     protected Context mContext = LoginActivity.this;
     private Button loginButton;

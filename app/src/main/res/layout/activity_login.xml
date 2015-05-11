@@ -20,12 +20,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout021"
-        android:layout_width="fill_parent"
-        android:layout_height="180dp"
-        android:paddingBottom="@dimen/vertical_margin_16"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/common_margin_40">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/account"
@@ -34,6 +32,7 @@
             android:layout_height="48dp"
             android:layout_alignBaseline="@+id/text1"
             android:layout_alignBottom="@+id/text1"
+            android:layout_marginBottom="@dimen/common_margin_5"
             android:ems="10"
             android:lines="1"
             android:maxLength="16"
@@ -51,6 +50,13 @@
             android:text="@string/user_account"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_size_20" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_size_60"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/password"
@@ -64,7 +70,7 @@
             android:inputType="textPassword"
             android:maxLength="16"
             android:paddingLeft="57sp"
-            android:layout_marginBottom="@dimen/vertical_margin_16"
+            android:layout_marginBottom="@dimen/common_margin_5"
             />
 
         <TextView
@@ -72,8 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/password"
-            android:layout_below="@+id/account"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/vertical_margin_16"
             android:gravity="center_vertical"
             android:paddingLeft="7.0sp"
             android:text="@string/user_password"
@@ -85,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/common_margin_10">
+        android:layout_marginTop="@dimen/common_margin_20">
 
         <CheckBox
             android:id="@+id/rememberPswd"
