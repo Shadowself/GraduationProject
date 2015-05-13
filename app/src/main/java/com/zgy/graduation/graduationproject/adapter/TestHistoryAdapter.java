@@ -1,4 +1,4 @@
-package com.zgy.graduation.graduationproject.activity;
+package com.zgy.graduation.graduationproject.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
-import com.zgy.graduation.graduationproject.adapter.CommonAdapter;
-import com.zgy.graduation.graduationproject.adapter.ViewHolder;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 
 /**

@@ -62,4 +62,10 @@ public abstract class CommonAdapter extends BaseAdapter {
             notifyDataSetChanged();
         }
     }
+
+    public void clearAndAddDatas(JSONArray datas){
+        clearDatas();
+        mDatas.addAll(datas);
+        notifyDataSetChanged();
+    }
 }

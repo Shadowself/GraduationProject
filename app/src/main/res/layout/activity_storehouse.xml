@@ -99,4 +99,14 @@
         android:textSize="@dimen/text_size_20"
         />
 
+    <Button
+        android:id="@+id/goodInfo"
+        style="@style/storehouse_button"
+        android:layout_marginTop="@dimen/common_margin_20"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:text="@string/storehouse_goodInfo"
+        android:textSize="@dimen/text_size_20"
+        />
+
 </LinearLayout>

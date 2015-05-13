@@ -29,6 +29,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     private Button changeButton;
     private Button getInfoFromTest;
     private Button getTestHistory;
+    private Button goodInfo;
     private JSONObject storehouseJson = new JSONObject();
     private SweetAlertDialog sweetAlertDialog;
     private TextView storehouse_name_text;
@@ -55,6 +56,9 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
 
         getTestHistory = (Button) findViewById(R.id.getTestHistory);
         getTestHistory.setOnClickListener(this);
+
+        goodInfo = (Button) findViewById(R.id.goodInfo);
+        goodInfo.setOnClickListener(this);
 
         storehouse_name_text = (TextView) findViewById(R.id.storehouse_name_text);
         storehouse_goods_text = (TextView) findViewById(R.id.storehouse_goods_text);
@@ -124,6 +128,14 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
                 intent2.setClass(this, TestHistoryActivity.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.alpha_out_activity);
+                break;
+
+            case R.id.goodInfo:
+                Intent intent3 = new Intent();
+                intent3.setClass(this, Storehouse_goodsInfoActivity.class);
+                startActivity(intent3);
+                overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.alpha_out_activity);
+
                 break;
         }
     }

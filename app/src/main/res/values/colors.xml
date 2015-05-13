@@ -8,5 +8,9 @@
     <color name="title_blue">#3DAFE6</color>
     <color name="green">#75BB4F</color>
     <color name="green_press">#729061</color>
+    <color name="red">#FF3399</color>
+    <color name="gray_red">#FFCCFF</color>
+    <color name="red1">#ff99cc</color>
+    <color name="red2">#ff66cc</color>
 
 </resources>

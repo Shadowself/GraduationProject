@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        style="@style/comm_TextView"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:padding="@dimen/common_margin_10"
+        android:text="@string/infor_goods"/>
+
+    <GridView
+        android:id="@+id/goods_gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/common_margin_10"
+        android:layout_marginRight="@dimen/common_margin_10"
+        android:layout_marginTop="@dimen/common_margin_10"
+        android:gravity="center"
+        android:horizontalSpacing="0dip"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dip" />
+
+</LinearLayout>

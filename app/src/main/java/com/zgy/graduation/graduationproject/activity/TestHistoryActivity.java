@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.adapter.TestHistoryAdapter;
 import com.zgy.graduation.graduationproject.bean.ResData;
 import com.zgy.graduation.graduationproject.http.HttpAsyncTaskManager;
 import com.zgy.graduation.graduationproject.http.StringTaskHandler;

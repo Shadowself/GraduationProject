@@ -62,6 +62,10 @@
             android:label="@string/getTestInfoHistory"
             />
 
+        <activity android:name=".activity.Storehouse_goodsInfoActivity"
+            android:label="@string/storehouse_goodInfo"
+            />
+
     </application>
 
 </manifest>
