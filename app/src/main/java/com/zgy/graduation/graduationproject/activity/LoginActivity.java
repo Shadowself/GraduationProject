@@ -83,13 +83,13 @@ public class LoginActivity extends Activity {
                         preferencesUtil.saveBoolean(ReqCmd.AUTOLOGINCHECKED, false);
                     }
 
-//                    Login(username, pswd);
+                    Login(username, pswd);
 
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, HomeActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.anim_zoomout_activity);
-                    finish();
+//                    Intent intent = new Intent();
+//                    intent.setClass(mContext, HomeActivity.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(R.anim.anim_zoomin_activity, R.anim.anim_zoomout_activity);
+//                    finish();
                 } else {
                     ViewUtil.showToast(mContext, getString(R.string.text_empty));
                 }
