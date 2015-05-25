@@ -4,7 +4,9 @@
     package="com.zgy.graduation.graduationproject">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -65,7 +67,10 @@
         <activity android:name=".activity.Storehouse_goodsInfoActivity"
             android:label="@string/storehouse_goodInfo"
             />
-
+        <activity
+            android:name="com.zgy.graduation.graduationproject.wxapi.WXEntryActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

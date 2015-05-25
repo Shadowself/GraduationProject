@@ -290,8 +290,10 @@ public class HttpAsyncTaskManager implements AsyncRequest {
 
                         response = OkHttpUtil.execute(request);
                         if (response.code() == 200) {
-                            is = response.body().byteStream();
-                            return IOUtils.stream2String(is);
+//                            is = response.body().byteStream();
+                            responseStr = response.body().string();
+//                            return IOUtils.stream2String(is);
+                            return responseStr;
                         } else {
                             handler.onError();
                             Log.e(TAG, IOUtils.stream2String(is));

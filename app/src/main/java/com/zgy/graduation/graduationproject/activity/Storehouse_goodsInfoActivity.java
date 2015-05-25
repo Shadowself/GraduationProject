@@ -35,13 +35,13 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
         comm_title.setText(R.string.storehouse_goodInfo);
         back_main.setVisibility(View.VISIBLE);
 
-        goods_gridview = (GridView)findViewById(R.id.goods_gridview);
+        goods_gridview = (GridView) findViewById(R.id.goods_gridview);
         storehouseGoodsInfoAdapter = new StorehouseGoodsInfoAdapter(this);
         jsonArray = new JSONArray();
         JSONArray jsonArrayTemp = new JSONArray();
-        for(int i = 0;i < 9; i++){
+        for (int i = 0; i < 9; i++) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put(ReqCmd.TEMPERATURE,"20");
+            jsonObject.put(ReqCmd.TEMPERATURE, "20");
             jsonArrayTemp.add(jsonObject);
         }
 
@@ -51,10 +51,10 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
         goods_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(jsonArray.size() >position){
-                    JSONObject jsonObject = (JSONObject)jsonArray.get(position);
+                if (jsonArray.size() > position) {
+                    JSONObject jsonObject = (JSONObject) jsonArray.get(position);
 
-                    ViewUtil.showToast(mContext, "温度：" + jsonObject.getString(ReqCmd.TEMPERATURE) + "℃ ，湿度：" + jsonObject.getString(ReqCmd.DAMPNESS) +" %RH ，害虫：" + jsonObject.getString(ReqCmd.PESTKIND) +", 数量：" + jsonObject.getString(ReqCmd.PESTNUMBER) +"。");
+                    ViewUtil.showToast(mContext, "温度：" + jsonObject.getString(ReqCmd.TEMPERATURE) + "℃ ，湿度：" + jsonObject.getString(ReqCmd.DAMPNESS) + " %RH ，害虫：" + jsonObject.getString(ReqCmd.PESTKIND) + ", 数量：" + jsonObject.getString(ReqCmd.PESTNUMBER) + "。");
                 }
             }
         });
@@ -62,10 +62,10 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
     }
 
 
-    public void getJsonData(){
+    public void getJsonData() {
         String url = String.format(getString(R.string.goodInfo_url), getString(R.string.common_ip));
         JSONObject jsonString = new JSONObject();
-        jsonString.put(ReqCmd.STOREHOUSEID,preferencesUtil.getString(ReqCmd.STOREHOUSEID));
+        jsonString.put(ReqCmd.STOREHOUSEID, preferencesUtil.getString(ReqCmd.STOREHOUSEID));
         SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.waiting), false);
 
         HttpAsyncTaskManager httpAsyncTaskManager = new HttpAsyncTaskManager(mContext);
@@ -86,7 +86,7 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
                                     ViewUtil.showToast(mContext, resData.getMessage_());
 
                                     jsonArray = JSON.parseArray(resData.getData());
-                                    Log.i(TAG,jsonArray.toJSONString());
+                                    Log.i(TAG, jsonArray.toJSONString());
                                     storehouseGoodsInfoAdapter.clearAndAddDatas(jsonArray);
                                     break;
                                 default:
@@ -112,3 +112,4 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
         );
     }
 }
+

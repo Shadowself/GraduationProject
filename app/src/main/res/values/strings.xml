@@ -55,4 +55,12 @@
     <string name="warning_text">暂无数据！</string>
     <string name="infor_goods">仓库储粮温度等截面图显示</string>
 
+    <string name="share_toWx_success">分享成功</string>
+    <string name="share_toWx_error">分享失败</string>
+    <string name="cancle_share_toWx">取消分享</string>
+    <string name="unknown_error">位置错误</string>
+
+    <string name="share_to_Wx">分享给好友</string>
+    <string name="share_to_Friend">分享到朋友圈</string>
+
 </resources>
