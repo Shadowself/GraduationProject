@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.zgy.graduation.graduationproject.R;
+import com.zgy.graduation.graduationproject.util.PreferencesUtil;
+import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.view.LoadingView;
 
 /**
@@ -13,12 +15,15 @@ import com.zgy.graduation.graduationproject.view.LoadingView;
  */
 public class StartActivity extends Activity {
     private LoadingView loadingView;
-
+    private PreferencesUtil preferencesUtil = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         loadingView = (LoadingView) findViewById(R.id.main_imageview);
+        preferencesUtil = new PreferencesUtil(this);
+
+
         initLoadingImages();
         new Thread(){
             @Override
@@ -42,10 +47,18 @@ public class StartActivity extends Activity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            boolean rememberChecked = preferencesUtil.getBoolean(ReqCmd.SHOWINTRO, false);
+            if(rememberChecked){
+                Intent intent = new Intent();
+                intent.setClass(StartActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent();
+                intent.setClass(StartActivity.this, IntroAction.class);
+                startActivity(intent);
+                preferencesUtil.saveBoolean(ReqCmd.SHOWINTRO, true);
+            }
 
-            Intent intent = new Intent();
-            intent.setClass(StartActivity.this, LoginActivity.class);
-            startActivity(intent);
 
             finish();
         }

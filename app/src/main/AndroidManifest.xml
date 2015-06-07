@@ -40,6 +40,11 @@
             android:label="@string/home_activity"
             />
 
+        <activity android:name=".activity.IntroAction"
+            android:label="@string/intro_infor"
+            />
+
+
         <activity android:name=".activity.StorehouseActivity"
         android:label="@string/storehouse_info"
         />

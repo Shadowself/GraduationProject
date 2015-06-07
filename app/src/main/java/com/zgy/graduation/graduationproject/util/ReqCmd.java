@@ -23,6 +23,8 @@ public class ReqCmd {
                                 DELETE_FLAG = "3",
                                 GET_STOREHOUSE_FLAG = "4";
 
+    public static final String SHOWINTRO = "show_intro_infor";
+
     //
     public static final String REMEMBERCHECKED = "rememberChecked",
            AUTOLOGINCHECKED = "autologinChecked";
