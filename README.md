@@ -1,0 +1,3 @@
+# GraduationProject
+毕业设计Android客户端
+粮食物联网移动终端数据展现系统
