@@ -17,6 +17,7 @@ import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 /**
  * Created by Mr_zhang on 2015/5/12.
@@ -63,7 +64,7 @@ public class Storehouse_goodsInfoActivity extends BaseActivity {
 
 
     public void getJsonData() {
-        String url = String.format(getString(R.string.goodInfo_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.goodInfo_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.STOREHOUSEID, preferencesUtil.getString(ReqCmd.STOREHOUSEID));
         SweetAlertDialogUtils.showProgressDialog(this, getString(R.string.waiting), false);

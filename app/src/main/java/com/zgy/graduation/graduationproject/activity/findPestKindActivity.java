@@ -26,6 +26,7 @@ import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.StringUtils;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -207,7 +208,7 @@ public class findPestKindActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void postPictureToServer(String describe){
-        String url = String.format(getString(R.string.postPest_url),getString(R.string.common_ip));
+        String url = String.format(getString(R.string.postPest_url), httpurlUtil.getUrl(this));
         List<String> pestInfo = new ArrayList<String>();
         pestInfo.add(preferencesUtil.getString(ReqCmd.STOREHOUSEID));
         pestInfo.add(describe);

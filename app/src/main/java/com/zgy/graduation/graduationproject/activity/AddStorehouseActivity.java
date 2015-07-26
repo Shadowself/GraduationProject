@@ -16,6 +16,7 @@ import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.StringUtils;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 /**
  * Created by zhangguoyu on 2015/4/9.
@@ -60,7 +61,7 @@ public class AddStorehouseActivity extends BaseActivity {
      * @param goodsString
      */
     public void AddStoreHouse(String storeString,String goodsString) {
-        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.storehouse_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG,ReqCmd.ADD_FLAG);
         jsonString.put(ReqCmd.STOREHOUSENAME, storeString);

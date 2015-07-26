@@ -15,6 +15,7 @@ import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -141,7 +142,7 @@ public class StorehouseActivity extends BaseActivity implements View.OnClickList
     }
 
     public void deleteStore() {
-        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.storehouse_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.DELETE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID, storehouseJson.getString("storehouseName"));

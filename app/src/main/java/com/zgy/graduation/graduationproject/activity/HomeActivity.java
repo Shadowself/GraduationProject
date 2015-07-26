@@ -22,6 +22,7 @@ import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +106,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void getAllStoreHouse(){
-        String url = String.format(getString(R.string.storehouse_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.storehouse_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.GET_STOREHOUSE_FLAG);
         SweetAlertDialogUtils.showProgressDialog(this,getString(R.string.waiting),false);

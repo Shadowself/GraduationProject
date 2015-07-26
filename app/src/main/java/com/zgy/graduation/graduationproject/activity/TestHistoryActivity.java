@@ -30,6 +30,7 @@ import com.zgy.graduation.graduationproject.http.StringTaskHandler;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
 
 /**
  * Created by Mr_zhang on 2015/4/21.
@@ -167,7 +168,7 @@ public class TestHistoryActivity extends BaseActivity {
     }
 
     public void getJsonData(){
-        String url = String.format(getString(R.string.testInfo_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.testInfo_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.FLAG, ReqCmd.CHANGE_FLAG);
         jsonString.put(ReqCmd.STOREHOUSEID,preferencesUtil.getString(ReqCmd.STOREHOUSEID));

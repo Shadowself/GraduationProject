@@ -20,6 +20,8 @@ import com.zgy.graduation.graduationproject.util.PreferencesUtil;
 import com.zgy.graduation.graduationproject.util.ReqCmd;
 import com.zgy.graduation.graduationproject.util.SweetAlertDialogUtils;
 import com.zgy.graduation.graduationproject.util.ViewUtil;
+import com.zgy.graduation.graduationproject.util.httpurlUtil;
+
 /**
  * description:login
  */
@@ -41,6 +43,9 @@ public class LoginActivity extends Activity {
         initView();
 
         preferencesUtil = new PreferencesUtil(this);
+
+//        preferencesUtil.saveString("comm_ip",getString(R.string.common_ip));
+
         boolean rememberChecked = preferencesUtil.getBoolean(ReqCmd.REMEMBERCHECKED, false);
         final boolean autologinChecked = preferencesUtil.getBoolean(ReqCmd.AUTOLOGINCHECKED, false);
         if (rememberChecked) {
@@ -135,7 +140,7 @@ public class LoginActivity extends Activity {
     }
 
     public void Login(String username, String password) {
-        String url = String.format(getString(R.string.login_url), getString(R.string.common_ip));
+        String url = String.format(getString(R.string.login_url), httpurlUtil.getUrl(this));
         JSONObject jsonString = new JSONObject();
         jsonString.put(ReqCmd.USERNAME, username);
         jsonString.put(ReqCmd.PASSWORD, password);
@@ -174,6 +179,10 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onFail() {
                         ViewUtil.showToast(mContext, getString(R.string.server_error));
+                        SweetAlertDialogUtils.closeProgressDialog();
+                        Intent intent = new Intent();
+                        intent.setClass(LoginActivity.this,ServerSetting.class);
+                        startActivity(intent);
                     }
 
                     @Override

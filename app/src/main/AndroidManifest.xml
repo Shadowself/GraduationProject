@@ -37,6 +37,11 @@
         </activity>
 
         <activity android:name=".activity.HomeActivity"
+        android:label="@string/home_activity"
+        />
+
+        <activity android:name=".activity.ServerSetting"
+            android:theme="@style/alert_dialog"
             android:label="@string/home_activity"
             />
 
